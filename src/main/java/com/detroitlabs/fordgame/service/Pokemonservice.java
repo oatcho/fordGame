@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class Pokemonservice {
 
-    public Pikachu fetchNidorino() {
+    public Pikachu fetchPikachu() {
         System.setProperty("http.agent", "pikachu");
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(
