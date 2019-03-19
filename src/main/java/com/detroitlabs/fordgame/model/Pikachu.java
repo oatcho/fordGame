@@ -9,7 +9,9 @@ public class Pikachu {
     private String name;
     private String weight;
     private String base_experience;
+    private int id;
     private PikachuSprite pikachuSprite = new PikachuSprite();
+    private PikachuMoves pikachuMoves = new PikachuMoves();
 
     @JsonProperty("sprites")
     public PikachuSprite getPikachuSprite() {
@@ -19,6 +21,24 @@ public class Pikachu {
     @JsonProperty("sprites")
     public void setPikachuSprite(PikachuSprite pikachuSprite) {
         this.pikachuSprite = pikachuSprite;
+    }
+
+    @JsonProperty("moves")
+    public PikachuMoves getPikachuMoves() {
+        return pikachuMoves;
+    }
+
+    @JsonProperty("moves")
+    public void setPikachuMoves(PikachuMoves pikachuMoves) {
+        this.pikachuMoves = pikachuMoves;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
