@@ -2,24 +2,24 @@ package com.detroitlabs.fordgame.Model;
 
 public class Room {
 
-    private String name;
+    private String roomName;
 
-    public Room(String name) {
-        this.name = name;
+    public Room(String roomName) {
+        this.roomName = roomName;
     }
 
     @Override
     public String toString() {
         return "Room{" +
-                "name='" + name + '\'' +
+                "roomName='" + roomName + '\'' +
                 '}';
     }
 
-    public String getName() {
-        return name;
+    public String getRoomName() {
+        return roomName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
     }
 }

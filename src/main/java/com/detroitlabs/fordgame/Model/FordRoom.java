@@ -14,7 +14,7 @@ public class FordRoom extends Room {
     @Override
     public String toString() {
         return "FordRoom{" +
-                "name=" + super.getName() +
+                "name=" + super.getRoomName() +
                 "onTime='" + onTime + '\'' +
                 ", late='" + late + '\'' +
                 '}';
