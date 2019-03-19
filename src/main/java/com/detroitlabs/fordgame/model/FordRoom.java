@@ -1,4 +1,4 @@
-package com.detroitlabs.fordgame.Model;
+package com.detroitlabs.fordgame.model;
 
 public class FordRoom extends Room {
 
