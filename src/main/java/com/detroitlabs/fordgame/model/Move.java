@@ -8,7 +8,6 @@ public class Move {
 
     private String name;
 
-
     @JsonProperty("name")
     public String getName() {
         return name;

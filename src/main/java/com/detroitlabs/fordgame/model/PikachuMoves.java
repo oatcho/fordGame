@@ -10,19 +10,15 @@ import java.util.ArrayList;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PikachuMoves {
 
-   private ArrayList<Move> moves;
+   private Move moves;
 
-
-   @JsonProperty("move")
-    public ArrayList<Move> getMoves() {
+    @JsonProperty("move")
+    public Move getMoves() {
         return moves;
     }
 
     @JsonProperty("move")
-    public void setMoves(ArrayList<Move> moves) {
+    public void setMoves(Move moves) {
         this.moves = moves;
     }
-
-
-
 }

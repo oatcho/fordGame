@@ -3,6 +3,8 @@ package com.detroitlabs.fordgame.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Pikachu {
 
@@ -11,7 +13,7 @@ public class Pikachu {
     private String base_experience;
     private int id;
     private PikachuSprite pikachuSprite = new PikachuSprite();
-    private PikachuMoves pikachuMoves;
+    private List<PikachuMoves> pikachuMoves;
 
     @JsonProperty("sprites")
     public PikachuSprite getPikachuSprite() {
@@ -24,12 +26,12 @@ public class Pikachu {
     }
 
     @JsonProperty("moves")
-    public PikachuMoves getPikachuMoves() {
+    public List<PikachuMoves> getPikachuMoves() {
         return pikachuMoves;
     }
 
     @JsonProperty("moves")
-    public void setPikachuMoves(PikachuMoves pikachuMoves) {
+    public void setPikachuMoves(List<PikachuMoves> pikachuMoves) {
         this.pikachuMoves = pikachuMoves;
     }
 
