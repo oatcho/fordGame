@@ -1,19 +1,21 @@
 package com.detroitlabs.fordgame.model;
 
-import org.springframework.stereotype.Component;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
-
-@Component
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Move {
 
-    private ArrayList<PikachuMoves> name = new ArrayList<>();
+    private String name;
 
-    public ArrayList<PikachuMoves> getName() {
+
+    @JsonProperty("name")
+    public String getName() {
         return name;
     }
 
-    public void setName(ArrayList<PikachuMoves> name) {
+    @JsonProperty("name")
+    public void setName(String name) {
         this.name = name;
     }
 }

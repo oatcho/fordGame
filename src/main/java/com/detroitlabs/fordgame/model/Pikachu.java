@@ -11,7 +11,7 @@ public class Pikachu {
     private String base_experience;
     private int id;
     private PikachuSprite pikachuSprite = new PikachuSprite();
-    private PikachuMoves pikachuMoves = new PikachuMoves();
+    private PikachuMoves pikachuMoves;
 
     @JsonProperty("sprites")
     public PikachuSprite getPikachuSprite() {

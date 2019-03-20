@@ -1,29 +1,28 @@
 package com.detroitlabs.fordgame.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Component;
 
-@Component
+import java.util.ArrayList;
+
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PikachuMoves {
 
-    private String move;
-    private Move moveName = new Move();
+   private ArrayList<Move> moves;
 
-    public String getMove() {
-        return move;
+
+   @JsonProperty("move")
+    public ArrayList<Move> getMoves() {
+        return moves;
     }
 
-    public void setMove(String move) {
-        this.move = move;
+    @JsonProperty("move")
+    public void setMoves(ArrayList<Move> moves) {
+        this.moves = moves;
     }
 
-    @JsonProperty("name")
-    public Move getMoveName() {
-        return moveName;
-    }
 
-    @JsonProperty("name")
-    public void setMoveName(Move moveName) {
-        this.moveName = moveName;
-    }
+
 }
