@@ -1,6 +1,6 @@
 package com.detroitlabs.fordgame.controller;
 
-import com.detroitlabs.fordgame.model.Pikachu;
+import com.detroitlabs.fordgame.model.Pokemon;
 import com.detroitlabs.fordgame.model.PikachuMoves;
 import com.detroitlabs.fordgame.model.PikachuSprite;
 import com.detroitlabs.fordgame.service.Pokemonservice;
@@ -19,7 +19,10 @@ public class GameController {
 
     @RequestMapping("/")
     public String displayPokemon(ModelMap modelMap) {
-        Pikachu pikachu = pokemonservice.fetchPikachu();
+        Pokemon pikachu = pokemonservice.fetchPikachu();
+//        Pokemon graveler
+
+        Pokemon graveler = pokemonservice.fetchSinglePokemon(75);
 
         PikachuSprite pikachuSprite = pikachu.getPikachuSprite();
         List<PikachuMoves> pikachuMoves = pikachu.getPikachuMoves();
@@ -29,6 +32,8 @@ public class GameController {
         modelMap.put("pikachuSprite", pikachuSprite);
         modelMap.put("name", pikachu.getName());
         modelMap.put("move", moveName);
+
+        modelMap.put("gravelerName", graveler.getName());
 
         return "home";
     }

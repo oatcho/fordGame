@@ -1,19 +1,17 @@
 package com.detroitlabs.fordgame.service;
 
 
-import com.detroitlabs.fordgame.model.Pikachu;
+import com.detroitlabs.fordgame.model.Pokemon;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @Component
 public class Pokemonservice {
 
-    public Pikachu fetchPikachu() {
-        System.setProperty("http.agent", "pikachu");
+    public Pokemon fetchSinglePokemon(int pokemonID){
+        System.setProperty("http.agent", "cheese");
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(
-                "https://pokeapi.co/api/v2/" +
-                        "pokemon/pikachu/", Pikachu.class);
-
+        return restTemplate.getForObject("https://pokeapi.co/api/v2/pokemon/" + pokemonID, Pokemon.class);
     }
+
 }
