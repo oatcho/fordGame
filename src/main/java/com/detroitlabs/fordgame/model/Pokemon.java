@@ -12,27 +12,27 @@ public class Pokemon {
     private String weight;
     private String base_experience;
     private int id;
-    private PikachuSprite pikachuSprite = new PikachuSprite();
-    private List<PikachuMoves> pikachuMoves;
+    private PokemonSprite pokemonSprite = new PokemonSprite();
+    private List<PokemonMoves> pokemonMoves;
 
     @JsonProperty("sprites")
-    public PikachuSprite getPikachuSprite() {
-        return pikachuSprite;
+    public PokemonSprite getPokemonSprite() {
+        return pokemonSprite;
     }
 
     @JsonProperty("sprites")
-    public void setPikachuSprite(PikachuSprite pikachuSprite) {
-        this.pikachuSprite = pikachuSprite;
+    public void setPokemonSprite(PokemonSprite pokemonSprite) {
+        this.pokemonSprite = pokemonSprite;
     }
 
     @JsonProperty("moves")
-    public List<PikachuMoves> getPikachuMoves() {
-        return pikachuMoves;
+    public List<PokemonMoves> getPokemonMoves() {
+        return pokemonMoves;
     }
 
     @JsonProperty("moves")
-    public void setPikachuMoves(List<PikachuMoves> pikachuMoves) {
-        this.pikachuMoves = pikachuMoves;
+    public void setPokemonMoves(List<PokemonMoves> pokemonMoves) {
+        this.pokemonMoves = pokemonMoves;
     }
 
     public int getId() {

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PikachuMoves {
+public class PokemonMoves {
 
    private Move moves;
 

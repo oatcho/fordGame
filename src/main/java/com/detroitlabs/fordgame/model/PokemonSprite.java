@@ -3,7 +3,7 @@ package com.detroitlabs.fordgame.model;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PikachuSprite {
+public class PokemonSprite {
 
     private String back_default;
     private String front_default;
