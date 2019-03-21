@@ -40,4 +40,15 @@ public class QuizRepository {
         return "";
     }
 
+    public String checkTrueFalseAnswer(String userInput){
+        for(Question question: ALL_TRUE_FALSE_QUESTIONS){
+            if (userInput.equalsIgnoreCase(question.getAnswer())){
+                return "Correct! :)";
+            } else if (!userInput.equalsIgnoreCase(question.getAnswer())) {
+                return "Incorrect! :(";
+            }
+        }
+        return "";
+    }
+
 }
