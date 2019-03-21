@@ -10,6 +10,9 @@ public class QuizRoom extends Room {
 
     private List<Question> questions;
 
+    public QuizRoom() {
+    }
+
     public QuizRoom(String roomName) {
         super(roomName);
         this.questions = new ArrayList<Question>();

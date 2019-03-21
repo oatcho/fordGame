@@ -7,6 +7,9 @@ public class GMBossRoom extends Room {
 
     Boss gmBoss;
 
+    public GMBossRoom() {
+    }
+
     public GMBossRoom(String roomName, Boss gmBoss) {
         super(roomName);
         this.gmBoss = gmBoss;

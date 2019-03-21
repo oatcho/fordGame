@@ -7,6 +7,9 @@ public class ChryslerBossRoom  extends Room {
 
     Boss chryslerBoss;
 
+    public ChryslerBossRoom() {
+    }
+
     public ChryslerBossRoom(String roomName, Boss chryslerBoss) {
         super(roomName);
         this.chryslerBoss = chryslerBoss;
