@@ -25,6 +25,14 @@ public class Time {
         return time += 1;
     }
 
+    public String checkForLateness() {
+        if (time < 10) {
+            return "You are late for work, kick rocks fam!";
+        } else {
+            return "Eta You Made It!!! (Drake Voice)";
+        }
+    }
+
     @Override
     public String toString() {
         return "Time{" +
