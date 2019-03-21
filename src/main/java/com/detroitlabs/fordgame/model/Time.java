@@ -11,20 +11,18 @@ public class Time {
 
     }
 
-    public void subtractTimeForQuiz() {
-        time -= 1;
+    public int subtractTimeForQuiz() {
+        return time -= 1;
     }
 
-    public void subtractTimeForBossBattle() {
-        time -= 1;
+    public int subtractTimeForBossBattle() { return time -= 1; }
+
+    public int subtractTimeForAction() {
+        return time -= 1;
     }
 
-    public void subtractTimeForAction() {
-        time -= 1;
-    }
-
-    public void addTimeForCorrectQuizAnswer() {
-        time += 1;
+    public int addTimeForCorrectQuizAnswer() {
+        return time += 1;
     }
 
     public String checkForLateness() {
@@ -49,6 +47,5 @@ public class Time {
     public void setTime(int time) {
         this.time = time;
     }
-
 
 }
