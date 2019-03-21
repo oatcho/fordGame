@@ -7,6 +7,9 @@ public class Boss {
 
     private String bossName;
 
+    public Boss() {
+    }
+
     public Boss(String bossName) {
         this.bossName = bossName;
 
