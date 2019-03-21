@@ -1,8 +1,8 @@
 package com.detroitlabs.fordgame.controller;
 
-import com.detroitlabs.fordgame.model.Pikachu;
-import com.detroitlabs.fordgame.model.PikachuMoves;
-import com.detroitlabs.fordgame.model.PikachuSprite;
+import com.detroitlabs.fordgame.model.Pokemon;
+import com.detroitlabs.fordgame.model.PokemonMoves;
+import com.detroitlabs.fordgame.model.PokemonSprite;
 import com.detroitlabs.fordgame.service.Pokemonservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,16 +19,26 @@ public class GameController {
 
     @RequestMapping("/")
     public String displayPokemon(ModelMap modelMap) {
-        Pikachu pikachu = pokemonservice.fetchPikachu();
+        Pokemon pikachu = pokemonservice.fetchSinglePokemon(25);
+//        Pokemon graveler
 
-        PikachuSprite pikachuSprite = pikachu.getPikachuSprite();
-        List<PikachuMoves> pikachuMoves = pikachu.getPikachuMoves();
-        String moveName = pikachuMoves.get(0).getMoves().getName();
+        Pokemon graveler = pokemonservice.fetchSinglePokemon(75);
+
+        PokemonSprite pokemonSprite = pikachu.getPokemonSprite();
+        List<PokemonMoves> pokemonMoves = pikachu.getPokemonMoves();
+        String moveName = pokemonMoves.get(0).getMoves().getName();
+
+        List<PokemonMoves> gravelerMoves = graveler.getPokemonMoves();
+        String gravelerMoveName = pokemonMoves.get(0).getMoves().getName();
 
 
-        modelMap.put("pikachuSprite", pikachuSprite);
+        modelMap.put("pikachuSprite", pokemonSprite);
         modelMap.put("name", pikachu.getName());
         modelMap.put("move", moveName);
+
+        modelMap.put("gravelerName", graveler.getName());
+        modelMap.put("gravelerSprite", graveler.getPokemonSprite());
+        modelMap.put("gravelerMove", gravelerMoveName);
 
         return "home";
     }
