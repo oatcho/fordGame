@@ -29,4 +29,15 @@ public class QuizRepository {
                     "d.) Tim Stone", "d")
     );
 
+    public String checkMultipleChoiceAnswer(String userInput){
+        for(Question question: ALL_MC_QUETIONS){
+            if (userInput.equalsIgnoreCase(question.getAnswer())){
+                return "Correct! :)";
+            } else if (!userInput.equalsIgnoreCase(question.getAnswer())) {
+                return "Incorrect! :(";
+            }
+        }
+        return "";
+    }
+
 }
