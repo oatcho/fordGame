@@ -1,5 +1,8 @@
 package com.detroitlabs.fordgame.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class GMBossRoom extends Room {
 
     Boss gmBoss;

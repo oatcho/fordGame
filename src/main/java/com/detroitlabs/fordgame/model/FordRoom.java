@@ -1,5 +1,8 @@
 package com.detroitlabs.fordgame.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class FordRoom extends Room {
 
     private String onTime = "You successfully made it to work on time, You da man!!!";
