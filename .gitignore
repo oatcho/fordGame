@@ -134,3 +134,6 @@ gradle-app.setting
 .idea_modules/
 .gradle/*
 out/
+
+/omega-rhino-235315-5b0256663ae1.json
+/src/main/resources/application.properties
