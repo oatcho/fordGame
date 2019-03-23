@@ -13,21 +13,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HelloController {
 
     @Autowired
-    private UserRepo userRepo;
+    private PersonRepo personRepo;
 
     @GetMapping("/add")
     @ResponseBody
     public String addNewUser(@RequestParam String name, @RequestParam String email) {
-        User n = new User();
+        Person n = new Person();
         n.setName(name);
         n.setEmail(email);
-        userRepo.save(n);
+        personRepo.save(n);
         return "Saved";
     }
 
     @GetMapping("/all")
     @ResponseBody
-    public Iterable<User> getAllUsers() {
-        return userRepo.findAll();
+    public Iterable<Person> getAllUsers() {
+        return personRepo.findAll();
     }
 }
