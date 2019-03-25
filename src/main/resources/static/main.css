@@ -1,0 +1,47 @@
+body{
+background-image: linear-gradient(darkblue, white);
+}
+
+#gameTitle{
+    text-align: center;
+    font-size: x-large;
+}
+
+#playerDetailsContainer{
+    display: flex;
+    justify-content: space-around;
+    height: 30vh;
+    border-style: solid;
+    margin-top: 5%;
+    background: #c3c3c3;
+}
+
+#prompt{
+    border-style: solid;
+    height: 45vh;
+    width: 75%;
+    margin: auto;
+    background: #c3c3c3;
+}
+
+#details{
+    border-style: solid;
+    margin: 1%;
+    width: 30%;
+    text-align: center;
+}
+
+#moves{
+    border-style: solid;
+    margin: 1%;
+    width: 30%;
+    text-align: center;
+}
+
+#sprite{
+    border-style: solid;
+    margin: 1%;
+    width: 30%;
+    text-align: center;
+}
+

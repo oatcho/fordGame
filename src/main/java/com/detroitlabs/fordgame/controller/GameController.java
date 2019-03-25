@@ -40,6 +40,6 @@ public class GameController {
         modelMap.put("gravelerSprite", graveler.getPokemonSprite());
         modelMap.put("gravelerMove", gravelerMoveName);
 
-        return "home";
+        return "start";
     }
 }
