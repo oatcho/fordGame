@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <link rel="stylesheet" th:href="@{main.css}" type="text/css">
+</head>
+<body>
+<div id="gameTitle">
+    <h1>Pop Quiz!</h1>
+</div>
+<div id="quizQuestionsBox">
+    <h1>Quiz Questions will show here:</h1>
+</div>
+<div id="quizDetailsContainer">
+    <div id="quizResponse"><p>question response</p></div>
+    <div id="quizForm"><form>question answer form</form></div>
+</div>
+<div id="playerDetailsContainer">
+    <div id="details">
+        <h1>details</h1>
+    </div>
+    <div id="moves">
+        <h1>moves</h1>
+    </div>
+    <div id="sprite">
+        <img th:src="${pikachuSprite.getFront_default()}" alt="pikachu">
+    </div>
+</div>
+</body>
+</html>
