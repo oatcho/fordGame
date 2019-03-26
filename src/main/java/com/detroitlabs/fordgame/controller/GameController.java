@@ -16,6 +16,8 @@ import java.util.List;
 @Controller
 public class GameController {
 
+    // TODO: 2019-03-26 create instance of pokemon here. Also creat instance of timer here.
+
     @Autowired
     Pokemonservice pokemonservice;
 
@@ -61,6 +63,14 @@ public class GameController {
        String question = QuizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion()).getQuestion();
        modelMap.put("tfQuestion", question);
         return "quiz1";
+    }
+
+    @RequestMapping("/quizTwo")
+    public String displaySecondQuizPage(ModelMap modelMap, QuizRepository quizRepository){
+        setPlayerPokemonDetails(modelMap);
+        String question = QuizRepository.ALL_MC_QUETIONS.get(quizRepository.generateRandomNumberforMcQuestion()).getQuestion();
+        modelMap.put("mcQuestion", question);
+        return "quiz2";
     }
 
     private void setPlayerPokemonDetails(ModelMap modelMap) {
