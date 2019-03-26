@@ -10,7 +10,8 @@
     <h1>Pop Quiz!</h1>
 </div>
 <div id="quizQuestionsBox">
-    <h1>Quiz Questions will show here:</h1>
+    <h3>As you step out of your door to get into your car, you’re stopped by Little Johnny from next door. He knows you’re working at Ford now and he wants to see how committed you are to the company. Being the kind-hearted human you are, you decide to entertain him. The sooner you answer his question correctly, the sooner you can say goodbye and get to work!</h3>
+    <p th:text="'Question: ' + ${tfQuestion}"></p>
 </div>
 <div id="quizDetailsContainer">
     <div id="quizResponse"><p>question response</p></div>
@@ -23,10 +24,22 @@
 </div>
 <div id="playerDetailsContainer">
     <div id="details">
-        <h1>details</h1>
+        <h1>Pokemon Details:</h1>
+        <ul id="pokemonDetails">
+            <li th:text="'Name: ' + ${pikachuName}"></li>
+            <li th:text="'Pokemon ID: ' + ${pikachuId}"></li>
+            <li th:text="'Weight: ' + ${pikachuWeight}"></li>
+            <li th:text="'Exp. Points: ' + ${pikachuBaseExperience}"></li>
+        </ul>
     </div>
     <div id="moves">
-        <h1>moves</h1>
+        <h1>Moves:</h1>
+        <ul>
+            <li>1) F-150 Terrain Tackle</li>
+            <li>2) Henry Ford Hurdle</li>
+            <li>3) Ford Fusion Beam</li>
+            <li>4) Mustang Trample</li>
+        </ul>
     </div>
     <div id="sprite">
         <img th:src="${pikachuSprite.getFront_default()}" alt="pikachu">
