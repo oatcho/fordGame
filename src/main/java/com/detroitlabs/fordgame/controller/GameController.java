@@ -33,13 +33,17 @@ public class GameController {
 
 
         modelMap.put("pikachuSprite", pokemonSprite);
-        modelMap.put("name", pikachu.getName());
-        modelMap.put("move", moveName);
+        modelMap.put("pikachuName", pikachu.getName());
+//        modelMap.put("move", moveName);
+        modelMap.put("pikachuMove", pikachu.getPokemonMoves());
+        modelMap.put("pikachuWeight", pikachu.getWeight());
+        modelMap.put("pikachuBaseExperience", pikachu.getBase_experience());
+        modelMap.put("pikachuId", pikachu.getId());
 
         modelMap.put("gravelerName", graveler.getName());
         modelMap.put("gravelerSprite", graveler.getPokemonSprite());
         modelMap.put("gravelerMove", gravelerMoveName);
 
-        return "quiz2";
+        return "start";
     }
 }
