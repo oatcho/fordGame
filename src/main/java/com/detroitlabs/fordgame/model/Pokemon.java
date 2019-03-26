@@ -14,6 +14,7 @@ public class Pokemon {
     private int id;
     private PokemonSprite pokemonSprite = new PokemonSprite();
     private List<PokemonMoves> pokemonMoves;
+    private String moveChoice;
 
     @JsonProperty("sprites")
     public PokemonSprite getPokemonSprite() {
@@ -33,6 +34,14 @@ public class Pokemon {
     @JsonProperty("moves")
     public void setPokemonMoves(List<PokemonMoves> pokemonMoves) {
         this.pokemonMoves = pokemonMoves;
+    }
+
+    public String getMoveChoice() {
+        return moveChoice;
+    }
+
+    public void setMoveChoice(String moveChoice) {
+        this.moveChoice = moveChoice;
     }
 
     public int getId() {

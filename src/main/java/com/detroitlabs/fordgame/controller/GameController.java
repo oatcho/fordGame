@@ -8,14 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Controller
 public class GameController {
 
+    PokemonSprite pokemonSprite;
+
     @Autowired
     Pokemonservice pokemonservice;
+
 
     @RequestMapping("/")
     public String displayPokemon(ModelMap modelMap) {
@@ -24,7 +29,7 @@ public class GameController {
 
         Pokemon graveler = pokemonservice.fetchSinglePokemon(75);
 
-        PokemonSprite pokemonSprite = pikachu.getPokemonSprite();
+        pokemonSprite = pikachu.getPokemonSprite();
         List<PokemonMoves> pokemonMoves = pikachu.getPokemonMoves();
         String moveName = pokemonMoves.get(0).getMoves().getName();
 
@@ -40,6 +45,35 @@ public class GameController {
         modelMap.put("gravelerSprite", graveler.getPokemonSprite());
         modelMap.put("gravelerMove", gravelerMoveName);
 
-        return "start";
+
+
+
+        return "boss-test-template";
     }
+
+    @RequestMapping("userMoveChoice")
+    public ModelAndView battleLogic(@RequestParam("moveChoice") String moveChoice, ModelMap modelMap){
+        ModelAndView mv = new ModelAndView("boss-test-template");
+        String battleResult = checkBattleStatus(moveChoice);
+        mv.addObject("result", battleResult);
+
+        modelMap.put("pikachuSprite", pokemonSprite);
+
+    return mv;
+    }
+
+    public String checkBattleStatus(String moveChoice){
+        String move1 = "This move is not effective";
+        String move3 = "Super effective, you defeated the boss";
+
+        if (moveChoice.equals("y")) {
+            return move3;
+        } else if (moveChoice.equals("x")) {
+            return move1;
+        }
+        return "";
+    }
+
 }
+
+
