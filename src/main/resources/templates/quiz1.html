@@ -14,11 +14,12 @@
     <p th:text="'Question: ' + ${tfQuestion}"></p>
 </div>
 <div id="quizDetailsContainer">
-    <div id="quizResponse"><p>question response</p></div>
+    <div id="quizResponse"><p th:text="${result}"></p></div>
     <div id="quizForm">
-        <form>
-        Enter Response Here:<br>
-        <input type="text" name="answer"><br>
+        <form action="userAnswer" method="get">
+            <input type="radio" name="answer" value="t" required>True</input>
+            <input type="radio" name="answer" value="f" required>False</input>
+            <input type="submit" value="Submit" name="answerSubmit">
         </form>
     </div>
 </div>

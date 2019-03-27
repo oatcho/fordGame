@@ -42,13 +42,15 @@ public class QuizRepository {
     }
 
     public String checkTrueFalseAnswer(String userInput){
-        for(Question question: ALL_TRUE_FALSE_QUESTIONS){
-            if (userInput.equalsIgnoreCase(question.getAnswer())){
-                return "Correct! :)";
-            } else if (!userInput.equalsIgnoreCase(question.getAnswer())) {
-                return "Incorrect! :(";
+        String correct = "Correct!";
+        String incorrect = "Incorrect!";
+//        for(Question question: ALL_TRUE_FALSE_QUESTIONS){
+            if (userInput.equalsIgnoreCase(ALL_TRUE_FALSE_QUESTIONS.get(0).getAnswer())){
+                return correct;
+            } else if (!userInput.equalsIgnoreCase(ALL_TRUE_FALSE_QUESTIONS.get(0).getAnswer())) {
+                return incorrect;
             }
-        }
+//        }
         return "";
     }
 
@@ -62,4 +64,11 @@ public class QuizRepository {
         return random.nextInt(ALL_MC_QUETIONS.size());
     }
 
+    public static List<Question> getAllTrueFalseQuestions() {
+        return ALL_TRUE_FALSE_QUESTIONS;
+    }
+
+    public static List<Question> getAllMcQuetions() {
+        return ALL_MC_QUETIONS;
+    }
 }

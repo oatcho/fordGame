@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -19,6 +20,11 @@ import java.util.List;
 public class GameController {
 
     // TODO: 2019-03-26 create instance of pokemon here. Also creat instance of timer here. make test for question method
+
+    //Pokemon pokemon;
+    //PokemonSprite pokemonSprite;
+    //int randomQuestion = quizRepository.generateRandomNumberForTfQuestion();
+    QuizRepository quizRepository = new QuizRepository();
 
     @Autowired
     Pokemonservice pokemonservice;
@@ -60,11 +66,21 @@ public class GameController {
     }
 
     @RequestMapping("/quizOne")
-    public String displayFirstQuizPage(ModelMap modelMap, QuizRepository quizRepository) {
+    public String displayFirstQuizPage(ModelMap modelMap) {
        setPlayerPokemonDetails(modelMap);
-       String question = QuizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion()).getQuestion();
+       String question = quizRepository.ALL_TRUE_FALSE_QUESTIONS.get(0).getQuestion();
        modelMap.put("tfQuestion", question);
         return "quiz1";
+    }
+
+    @RequestMapping("userAnswer")
+    public ModelAndView quizLogic(@RequestParam("answer") String answer, ModelMap modelMap){
+        System.out.println(answer);
+        String quizResult = quizRepository.checkTrueFalseAnswer(answer);
+        ModelAndView mv = new ModelAndView("quiz1");
+        setPlayerPokemonDetails(modelMap);
+        mv.addObject("result", quizResult);
+        return mv;
     }
 
     @RequestMapping("/quizTwo")
