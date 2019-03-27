@@ -6,17 +6,19 @@ import com.detroitlabs.fordgame.model.PokemonMoves;
 import com.detroitlabs.fordgame.model.PokemonSprite;
 import com.detroitlabs.fordgame.model.Question;
 import com.detroitlabs.fordgame.service.Pokemonservice;
+import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Controller
 public class GameController {
 
-    // TODO: 2019-03-26 create instance of pokemon here. Also creat instance of timer here.
+    // TODO: 2019-03-26 create instance of pokemon here. Also creat instance of timer here. make test for question method
 
     @Autowired
     Pokemonservice pokemonservice;
@@ -83,4 +85,6 @@ public class GameController {
         modelMap.put("pikachuBaseExperience", pikachu.getBase_experience());
         modelMap.put("pikachuId", pikachu.getId());
     }
+
+
 }
