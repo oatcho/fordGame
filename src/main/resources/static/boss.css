@@ -1,0 +1,145 @@
+body{
+    background-image: linear-gradient(darkblue, white);
+}
+
+#gameTitle{
+    text-align: center;
+    /*font-size: x-large;*/
+    border-style: double;
+    border-radius: 50%;
+    border-color: white;
+    width: 20%;
+    margin: auto;
+    margin-bottom: 1%;
+    background-color: #0b4284;
+}
+
+#fordTitle{
+    color: white;
+    font-style: oblique;
+    font-family: cursive;
+
+}
+
+#playerDetailsContainer{
+    display: flex;
+    justify-content: space-around;
+    height: 30vh;
+    border-style: double;
+    border-color: white;
+    margin-top: 1%;
+    background: #c3c3c3;
+}
+
+#prompt{
+    border-style: solid;
+    height: 45vh;
+    width: 75%;
+    margin: auto;
+    background: #c3c3c3;
+}
+
+#details{
+    border-style: groove;
+    border-color: #467fb4;
+    background-color: #3b5b85;
+    margin: 1%;
+    width: 30%;
+    text-align: center;
+}
+
+#moves{
+    border-style: groove;
+    border-color: #467fb4;
+    background-color: #3b5b85;
+    margin: 1%;
+    width: 30%;
+    text-align: center;
+}
+
+#sprite{
+    border-style: groove;
+    border-color: #467fb4;
+    background-color: #3b5b85;
+    margin: 1%;
+    width: 30%;
+    text-align: center;
+}
+
+
+#quizQuestionsBox{
+    border-style: solid;
+    height: 39vh;
+    width: 75%;
+    margin: auto;
+    background: #c3c3c3;
+}
+
+#quizDetailsContainer{
+    display: flex;
+    justify-content: space-around;
+    height: 10vh;
+    border-style: solid;
+    margin-top: 1%;
+}
+
+#pokemonDetails{
+
+}
+
+#bossField{
+    text-align: center;
+    border-style: groove;
+    border-color: #467fb4;
+    height: 38vh;
+    width: 75%;
+    margin: auto;
+    background-color: #3b5b85;
+    box-shadow: black;
+
+}
+
+#pikachuImage{
+    width: 50%;
+}
+
+#gravelerImage{
+    height: 70%;
+    float: top;
+}
+
+#moveContainer {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    height: 100%;
+
+}
+
+#allMoves {
+    width: 40%;
+    height: 40%;
+    margin: auto;
+}
+
+.moves{
+    margin: 3%;
+}
+
+#battleActionField{
+    border-style: groove;
+    border-color: #467fb4;
+    background-color: #3b5b85;
+    margin:auto;
+    text-align: center;
+    height: 10%;
+    width: 80%;
+    margin-top: 2%;
+
+}
+
+#nextPageButton {
+    /*background-color: pink;*/
+    /*width: 500%;*/
+}
+
