@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz2</title>
+    <link rel="stylesheet" th:href="@{main.css}" type="text/css">
+</head>
+<body>
+<div id="gameTitle">
+    <h1>Pop Quiz!</h1>
+</div>
+<div id="quizQuestionsBox">
+    <h3>You’re cutting it close, and of course, you get stopped at the traffic light. As you’re waiting for the light to turn green, a homeless woman approaches you. She says that if you can answer her question correctly, she’ll tell you about a shortcut you can use to get to Ford. If you get it wrong, well, the clock’s still ticking!</h3>
+    <p th:text="'Question: ' + ${mcQuestion}"></p>
+</div>
+<div id="quizDetailsContainer">
+    <div id="quizResponse"><p>question response</p></div>
+    <div id="quizForm">
+        <form>
+            Enter Response Here:<br>
+            <input type="text" name="answer"><br>
+        </form>
+    </div>
+</div>
+<div id="playerDetailsContainer">
+    <div id="details">
+        <h1>Pokemon Details:</h1>
+        <ul id="pokemonDetails">
+            <li th:text="'Name: ' + ${pikachuName}"></li>
+            <li th:text="'Pokemon ID: ' + ${pikachuId}"></li>
+            <li th:text="'Weight: ' + ${pikachuWeight}"></li>
+            <li th:text="'Exp. Points: ' + ${pikachuBaseExperience}"></li>
+        </ul>
+    </div>
+    <div id="moves">
+        <h1>Moves:</h1>
+        <ul>
+            <li>1) F-150 Terrain Tackle</li>
+            <li>2) Henry Ford Hurdle</li>
+            <li>3) Ford Fusion Beam</li>
+            <li>4) Mustang Trample</li>
+        </ul>
+    </div>
+    <div id="sprite">
+        <img th:src="${pikachuSprite.getFront_default()}" alt="pikachu">
+    </div>
+</div>
+</body>
+</html>

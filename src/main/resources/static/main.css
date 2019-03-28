@@ -45,3 +45,23 @@ background-image: linear-gradient(darkblue, white);
     text-align: center;
 }
 
+
+#quizQuestionsBox{
+    border-style: solid;
+    height: 39vh;
+    width: 75%;
+    margin: auto;
+    background: #c3c3c3;
+}
+
+#quizDetailsContainer{
+    display: flex;
+    justify-content: space-around;
+    height: 10vh;
+    border-style: solid;
+    margin-top: 1%;
+}
+
+#pokemonDetails{
+
+}

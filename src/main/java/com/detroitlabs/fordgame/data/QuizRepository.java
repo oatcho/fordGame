@@ -3,6 +3,7 @@ package com.detroitlabs.fordgame.data;
 import com.detroitlabs.fordgame.model.Question;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class QuizRepository {
     public static final List<Question> ALL_TRUE_FALSE_QUESTIONS = Arrays.asList(
@@ -22,7 +23,7 @@ public class QuizRepository {
                     "b.) $200 Million \n" +
                     "c.) $30 Million \n" +
                     "d.) $1 Billion", "a"),
-            new Question("Who did Ford recently hire to be replace current CFO, Bob Shanks?\n" +
+            new Question("Whom did Ford recently hire to be replace current CFO, Bob Shanks?\n" +
                     "a.) James Hackett \n" +
                     "b.) Abraham Lincoln \n" +
                     "c.) Paul Glomski \n" +
@@ -49,6 +50,16 @@ public class QuizRepository {
             }
         }
         return "";
+    }
+
+    public int generateRandomNumberForTfQuestion(){
+        Random random = new Random();
+        return random.nextInt(ALL_TRUE_FALSE_QUESTIONS.size());
+    }
+
+    public int generateRandomNumberforMcQuestion(){
+        Random random = new Random();
+        return random.nextInt(ALL_MC_QUETIONS.size());
     }
 
 }
