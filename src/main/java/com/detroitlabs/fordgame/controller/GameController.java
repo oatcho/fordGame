@@ -19,7 +19,8 @@ import java.util.List;
 @Controller
 public class GameController {
 
-    // TODO: 2019-03-26 create instance of pokemon here. Also creat instance of timer here. make test for question method
+    Pokemon pokemon;
+    PokemonSprite pokemonSprite;
 
     //Pokemon pokemon;
     //PokemonSprite pokemonSprite;
@@ -152,5 +153,96 @@ public class GameController {
             return nextButton;
         }
     }
+    private void setBossPokemonDetails(ModelMap modelMap) {
+        Pokemon graveler = pokemonservice.fetchSinglePokemon(75);
+        PokemonSprite pokemonSprite = graveler.getPokemonSprite();
+        modelMap.put("gravelerSprite", pokemonSprite);
+        modelMap.put("gravelerName", graveler.getName());
+        modelMap.put("gravelerMove", graveler.getPokemonMoves());
+        modelMap.put("gravelerWeight", graveler.getWeight());
+        modelMap.put("gravelerBaseExperience", graveler.getBase_experience());
+        modelMap.put("gravelerId", graveler.getId());
+    }
+
+    private void setBoss2PokemonDetails(ModelMap modelMap) {
+        Pokemon deoxys = pokemonservice.fetchSinglePokemon(386);
+        PokemonSprite pokemonSprite = deoxys.getPokemonSprite();
+        modelMap.put("deoxysSprite", pokemonSprite);
+        modelMap.put("deoxysName", deoxys.getName());
+        modelMap.put("deoxysMove", deoxys.getPokemonMoves());
+        modelMap.put("deoxysWeight", deoxys.getWeight());
+        modelMap.put("deoxysBaseExperience", deoxys.getBase_experience());
+        modelMap.put("deoxysId", deoxys.getId());
+    }
+
+
+    @RequestMapping("/bossOne")
+    public String displayBossBattle1(ModelMap modelMap) {
+        setPlayerPokemonDetails(modelMap);
+        setBossPokemonDetails(modelMap);
+        return "boss";
+    }
+
+    @RequestMapping("/bossTwo")
+    public String displayBossBattle2(ModelMap modelMap) {
+        setPlayerPokemonDetails(modelMap);
+        setBoss2PokemonDetails(modelMap);
+        return "boss2";
+    }
+
+
+
+    @RequestMapping("userMoveChoice")
+    public ModelAndView battleLogic(@RequestParam("moveChoice") String moveChoice, ModelMap modelMap){
+        ModelAndView mv = new ModelAndView("boss");
+        String battleResult = checkBattleStatus(moveChoice);
+        String nextPage = showNextButton(moveChoice);
+        mv.addObject("result", battleResult);
+        mv.addObject("next", nextPage);
+
+        setPlayerPokemonDetails(modelMap);
+        setBossPokemonDetails(modelMap);
+
+        return mv;
+    }
+
+    @RequestMapping("userMoveChoice2")
+    public ModelAndView battleLogic2(@RequestParam("moveChoice2") String moveChoice2, ModelMap modelMap){
+        ModelAndView mv = new ModelAndView("boss2");
+        String battleResult = checkBattleStatus(moveChoice2);
+        String nextPage = showNextButton(moveChoice2);
+        mv.addObject("result2", battleResult);
+        mv.addObject("next", nextPage);
+
+        setPlayerPokemonDetails(modelMap);
+        setBoss2PokemonDetails(modelMap);
+
+        return mv;
+    }
+
+    public String checkBattleStatus(String moveChoice){
+        String move1 = "This move is not effective";
+        String move3 = "Super effective, you defeated the boss";
+
+        if (moveChoice.equals("y")) {
+            return move3;
+        } else if (moveChoice.equals("x")) {
+            return move1;
+        }
+        return "";
+    }
+
+    public String showNextButton(String moveChoice) {
+        String nextButton = "";
+        String nextButtonCorrect = "←Next Level";
+        if (moveChoice.equals("x")) {
+            return nextButton;
+        } else if (moveChoice.equals("y")) {
+            return nextButtonCorrect;
+        }
+        return "";
+    }
 
 }
+
+
