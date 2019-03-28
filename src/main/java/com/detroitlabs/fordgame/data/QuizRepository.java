@@ -41,13 +41,13 @@ public class QuizRepository {
         return "";
     }
 
-    public String checkTrueFalseAnswer(String userInput){
+    public String checkTrueFalseAnswer(String userInput, String questionAnswer){
         String correct = "Correct!";
         String incorrect = "Incorrect!";
 //        for(Question question: ALL_TRUE_FALSE_QUESTIONS){
-            if (userInput.equalsIgnoreCase(ALL_TRUE_FALSE_QUESTIONS.get(0).getAnswer())){
+            if (userInput.equalsIgnoreCase(questionAnswer)){
                 return correct;
-            } else if (!userInput.equalsIgnoreCase(ALL_TRUE_FALSE_QUESTIONS.get(0).getAnswer())) {
+            } else if (!userInput.equalsIgnoreCase(questionAnswer)){
                 return incorrect;
             }
 //        }

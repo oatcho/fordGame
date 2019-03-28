@@ -26,6 +26,8 @@ public class GameController {
     //int randomQuestion = quizRepository.generateRandomNumberForTfQuestion();
     QuizRepository quizRepository = new QuizRepository();
 
+    public int questionIndex = quizRepository.generateRandomNumberForTfQuestion();
+
     @Autowired
     Pokemonservice pokemonservice;
 
@@ -68,18 +70,26 @@ public class GameController {
     @RequestMapping("/quizOne")
     public String displayFirstQuizPage(ModelMap modelMap) {
        setPlayerPokemonDetails(modelMap);
-       String question = quizRepository.ALL_TRUE_FALSE_QUESTIONS.get(0).getQuestion();
+       Question randomGenQuestion= quizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion());
+       String question = randomGenQuestion.getQuestion();
+//       String question = quizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion()).getQuestion();
+       String questionAnswer = randomGenQuestion.getAnswer();
        modelMap.put("tfQuestion", question);
+       modelMap.put("tfAnswer", questionAnswer);
+
+
+       String randQuestionsAnswer = "hello";
         return "quiz1";
     }
 
     @RequestMapping("userAnswer")
-    public ModelAndView quizLogic(@RequestParam("answer") String answer, ModelMap modelMap){
-        System.out.println(answer);
-        String quizResult = quizRepository.checkTrueFalseAnswer(answer);
+    public ModelAndView quizLogic(@RequestParam("answer") String userAnswer, @RequestParam("banana") String tfAnswer,ModelMap modelMap){
+//        System.out.println(answer);
+        String quizResult = quizRepository.checkTrueFalseAnswer(userAnswer, tfAnswer);
         ModelAndView mv = new ModelAndView("quiz1");
         setPlayerPokemonDetails(modelMap);
         mv.addObject("result", quizResult);
+
         return mv;
     }
 
@@ -101,6 +111,5 @@ public class GameController {
         modelMap.put("pikachuBaseExperience", pikachu.getBase_experience());
         modelMap.put("pikachuId", pikachu.getId());
     }
-
 
 }

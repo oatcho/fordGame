@@ -19,6 +19,7 @@
         <form action="userAnswer" method="get">
             <input type="radio" name="answer" value="t" required>True</input>
             <input type="radio" name="answer" value="f" required>False</input>
+            <input type="hidden" name="banana" th:value="${tfAnswer}" />
             <input type="submit" value="Submit" name="answerSubmit">
         </form>
     </div>
