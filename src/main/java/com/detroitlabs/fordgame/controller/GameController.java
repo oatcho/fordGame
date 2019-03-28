@@ -70,12 +70,13 @@ public class GameController {
     @RequestMapping("/quizOne")
     public String displayFirstQuizPage(ModelMap modelMap) {
        setPlayerPokemonDetails(modelMap);
-       Question randomGenQuestion= quizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion());
-       String question = randomGenQuestion.getQuestion();
-//       String question = quizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion()).getQuestion();
-       String questionAnswer = randomGenQuestion.getAnswer();
-       modelMap.put("tfQuestion", question);
-       modelMap.put("tfAnswer", questionAnswer);
+//       Question randomGenQuestion= quizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion());
+//       String question = randomGenQuestion.getQuestion();
+////       String question = quizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion()).getQuestion();
+//       String questionAnswer = randomGenQuestion.getAnswer();
+        setNewTfQuestion(modelMap);
+//        modelMap.put("tfQuestion", question);
+//        modelMap.put("tfAnswer", questionAnswer);
 
 
        String randQuestionsAnswer = "hello";
@@ -86,6 +87,14 @@ public class GameController {
     public ModelAndView quizLogic(@RequestParam("answer") String userAnswer, @RequestParam("banana") String tfAnswer,ModelMap modelMap){
 //        System.out.println(answer);
         String quizResult = quizRepository.checkTrueFalseAnswer(userAnswer, tfAnswer);
+        if (quizResult.equalsIgnoreCase("correct!")){
+            String correctAnswer = "Johnny's satisfied with your competence and allows you to get on your way.";
+            modelMap.put("tfQuestion", correctAnswer);
+        }else {
+            setNewTfQuestion(modelMap);
+        }
+
+//        setNewTfQuestion(modelMap);
         ModelAndView mv = new ModelAndView("quiz1");
         setPlayerPokemonDetails(modelMap);
         mv.addObject("result", quizResult);
@@ -110,6 +119,15 @@ public class GameController {
         modelMap.put("pikachuWeight", pikachu.getWeight());
         modelMap.put("pikachuBaseExperience", pikachu.getBase_experience());
         modelMap.put("pikachuId", pikachu.getId());
+    }
+
+    private void setNewTfQuestion(ModelMap modelMap){
+        Question randomGenQuestion= quizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion());
+        String question = randomGenQuestion.getQuestion();
+//       String question = quizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion()).getQuestion();
+        String questionAnswer = randomGenQuestion.getAnswer();
+        modelMap.put("tfQuestion", question);
+        modelMap.put("tfAnswer", questionAnswer);
     }
 
 }

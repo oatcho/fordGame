@@ -7,9 +7,9 @@ import java.util.Random;
 
 public class QuizRepository {
     public static final List<Question> ALL_TRUE_FALSE_QUESTIONS = Arrays.asList(
-            new Question("True or False? Ford is the second largest family owned company in the world", "t"),
-            new Question("True or False? In 2012, Chevrolet used a Ford SuperDuty to set up their Chevy Truck display at the Texas State Fair.", "t"),
-            new Question("True or False? In 2018, the best selling vehicles in the United States were the Ford F-Series trucks.", "t")
+            new Question("Question: True or False? Ford is the second largest family owned company in the world", "t"),
+            new Question("Question: True or False? In 2012, Chevrolet used a Ford SuperDuty to set up their Chevy Truck display at the Texas State Fair.", "t"),
+            new Question("Question: True or False? In 2018, the best selling vehicles in the United States were the Ford F-Series trucks.", "t")
     );
 
     public static final List<Question> ALL_MC_QUETIONS = Arrays.asList(
