@@ -83,10 +83,11 @@ public class GameController {
         }else {
             setNewTfQuestion(modelMap);
         }
+        String nextPage = showNextButtonOnQuizPages(quizResult);
         ModelAndView mv = new ModelAndView("quiz1");
         setPlayerPokemonDetails(modelMap);
         mv.addObject("result", quizResult);
-
+        mv.addObject("next", nextPage);
         return mv;
     }
 
@@ -106,10 +107,11 @@ public class GameController {
         }else {
             setNewMcQuestion(modelMap);
         }
+        String nextPage = showNextButtonOnQuizPages(quizResult);
         ModelAndView mv = new ModelAndView("quiz2");
         setPlayerPokemonDetails(modelMap);
         mv.addObject("result", quizResult);
-
+        mv.addObject("next", nextPage);
         return mv;
     }
 
@@ -139,6 +141,16 @@ public class GameController {
         String questionAnswer = randomGenQuestion.getAnswer();
         modelMap.put("mcQuestion", question);
         modelMap.put("mcAnswer", questionAnswer);
+    }
+
+    public String showNextButtonOnQuizPages(String result) {
+        String nextButton = "";
+        String nextButtonCorrect = "←Next Level";
+        if (result.equalsIgnoreCase("correct!")) {
+            return nextButtonCorrect;
+        } else {
+            return nextButton;
+        }
     }
 
 }
