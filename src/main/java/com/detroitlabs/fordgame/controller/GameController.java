@@ -69,8 +69,16 @@ public class GameController {
         modelMap.put("gravelerId", graveler.getId());
     }
 
-
-
+    private void setBoss2PokemonDetails(ModelMap modelMap) {
+        Pokemon deoxys = pokemonservice.fetchSinglePokemon(386);
+        PokemonSprite pokemonSprite = deoxys.getPokemonSprite();
+        modelMap.put("deoxysSprite", pokemonSprite);
+        modelMap.put("deoxysName", deoxys.getName());
+        modelMap.put("deoxysMove", deoxys.getPokemonMoves());
+        modelMap.put("deoxysWeight", deoxys.getWeight());
+        modelMap.put("deoxysBaseExperience", deoxys.getBase_experience());
+        modelMap.put("deoxysId", deoxys.getId());
+    }
 
 
     @RequestMapping("/bossOne")
@@ -78,6 +86,13 @@ public class GameController {
         setPlayerPokemonDetails(modelMap);
         setBossPokemonDetails(modelMap);
         return "boss";
+    }
+
+    @RequestMapping("/bossTwo")
+    public String displayBossBattle2(ModelMap modelMap) {
+        setPlayerPokemonDetails(modelMap);
+        setBoss2PokemonDetails(modelMap);
+        return "boss2";
     }
 
 
@@ -90,10 +105,24 @@ public class GameController {
         mv.addObject("result", battleResult);
         mv.addObject("next", nextPage);
 
-       setPlayerPokemonDetails(modelMap);
-       setBossPokemonDetails(modelMap);
+        setPlayerPokemonDetails(modelMap);
+        setBossPokemonDetails(modelMap);
 
-    return mv;
+        return mv;
+    }
+
+    @RequestMapping("userMoveChoice2")
+    public ModelAndView battleLogic2(@RequestParam("moveChoice2") String moveChoice2, ModelMap modelMap){
+        ModelAndView mv = new ModelAndView("boss2");
+        String battleResult = checkBattleStatus(moveChoice2);
+        String nextPage = showNextButton(moveChoice2);
+        mv.addObject("result2", battleResult);
+        mv.addObject("next", nextPage);
+
+        setPlayerPokemonDetails(modelMap);
+        setBoss2PokemonDetails(modelMap);
+
+        return mv;
     }
 
     public String checkBattleStatus(String moveChoice){

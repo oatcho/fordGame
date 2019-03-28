@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Boss Battle</title>
+    <link rel="stylesheet" th:href="@{boss.css}" type="text/css">
+</head>
+<body>
+<div id="gameTitle">
+    <h2 id="fordTitle">Ford Game</h2>
+</div>
+
+<div id="bossField">
+    <h3>Chrysler Head Hunter</h3>
+    <p th:text="${deoxysName}"></p>
+    <img th:src="${deoxysSprite.getFront_default()}" id="gravelerImage">
+</div>
+<div id="nextPageButton">
+    <a th:text="${next}" style="color: #a50000" th:href="@{/}"></a>
+</div>
+
+<div id="battleActionField">
+    <h2><u>Battle Action Responds</u></h2>
+    <h3 th:text="${result2}"></h3>
+</div>
+
+<div id="playerDetailsContainer">
+    <div id="details">
+        <h1>Pokemon Details:</h1>
+        <ul id="pokemonDetails">
+            <li th:text="'Name: ' + ${pikachuName}"></li>
+            <li th:text="'Pokemon ID: ' + ${pikachuId}"></li>
+            <li th:text="'Weight: ' + ${pikachuWeight}"></li>
+            <li th:text="'Exp. Points: ' + ${pikachuBaseExperience}"></li>
+        </ul>
+    </div>
+
+    <div id="moves">
+        <h1>Moves</h1>
+        <div id="moveContainer">
+            <form action="userMoveChoice2" method="get">
+                <div id="allMoves">
+                    <input class="moves" type="radio" name="moveChoice2" value="y" required> F-150 Terrain Tackle </input>
+                    <input class="moves" type="radio" name="moveChoice2" value="x" required> Henry Ford Hurdle </input>
+                    <input class="moves" type="radio" name="moveChoice2" value="x" required> Mustang Trample </input>
+                    <input class="moves" type="radio" name="moveChoice2" value="x" required> Ford Fusion Beam </input>
+                    <input class="moves" type="submit" value="Attack" name="attackSubmit">
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <div id="sprite">
+        <img th:src="${pikachuSprite.getBack_default()}" id="pikachuImage" alt="pikachu">
+    </div>
+
+</div>
+
+</body>
+</html>
