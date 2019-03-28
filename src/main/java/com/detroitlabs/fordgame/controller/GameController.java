@@ -1,5 +1,6 @@
 package com.detroitlabs.fordgame.controller;
 
+import com.detroitlabs.fordgame.model.GameState;
 import com.detroitlabs.fordgame.model.Pokemon;
 import com.detroitlabs.fordgame.model.PokemonMoves;
 import com.detroitlabs.fordgame.model.PokemonSprite;
@@ -41,5 +42,26 @@ public class GameController {
         modelMap.put("gravelerMove", gravelerMoveName);
 
         return "home";
+    }
+
+    private GameState gameState;
+
+    public void gameStart() {
+        gameState = GameState.Start;
+
+        switch (gameState) {
+            case Start:
+                break;
+            case QuizRoomOne:
+                break;
+            case ChryslerBossRoom:
+                break;
+            case QuizRoomTwo:
+                break;
+            case GMBossRoom:
+                break;
+            case Ford:
+                break;
+        }
     }
 }

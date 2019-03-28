@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "omega-rhino-235315",
+  "private_key_id": "5b0256663ae140acbba8ed1dc90e7e7b63144ffd",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC88xA7GzuAx/NC\nAikZ8Pd978TuFRba/iq9YuWVAULt9jCj890l9UnCmKDfBXJXqXAT90APskWneoPM\npC1rqzJb4LtZODTfLZOyznV1VRVnVsNwVTf0J12PZm/RPA9y8hjKO4eeM7CrWKq1\nYoffHsNySLVrlY5T7MStC9eouE/6lQYzSHZ2D7lIhbiqHTbPs8t6Fww17P2e2kri\nNO8fRvAQu1foMQ8hG12m0LpWOP3WwlQkezO9N7bLUja+1KkmHetbg7enKucL7y6h\nTXaSO6zNZfZFl/soF0g1+0ze9mG+Z6YuP/IK4M3GnaEL0Vl9I/OWdsO7t5iNVRbT\nhMC3pmqlAgMBAAECggEAG/UXBLfd0QtE2hJ5xGXcKN0uVU/3hsWuy0Dz2V1LauxP\nfCLcKP6nQEzXGMi0h3YBqGKgLvJgzgwZrlDoi5LUK7YP4n6njBIxVXao+IhzV0wG\nNPvXAKBGfq5YgywQ2SArPNkcEvNxA5lmANqoYgIqRyGs/lMtsQtKepRS/5rt8pSS\n2dkeEhqLyKM/V2X6D7V7yyzzxwc6zFgPgo6TqTPQ11NrCvg1K3DmrE927zXlmweY\nsQbvX7BACu5fsHbP3PIt+Z9tayuhZbmEyNQY4oO8aCBV1iNB2eZrDhbJHXRFTKdO\nPutuNyjmUyBHFU2lQozLwjz+YFkDwAmFpKrOTjfA4QKBgQD0QF6n5oQmAbOClRKB\nYOLcS4KKjIOa1wDX9KcsSFVH4PGMp0Y+HFyE+qPMwXoA7l8Jecw1YGxeHcrjssVD\nX5V6YEReRlxTprKE5hagk/PFH11ozo5IKufYffLcr6qxvGkYBbly4ioRB26tTkYD\nleYGnTn2bjzyrNM2R3vyfWcW/QKBgQDGCblCc1V1XFYUU3gfznLbrnENeesDmAQ4\nfRZ7AuMiyL4WzMcDtzUCZ75Hj3816DlgPtLIA9Ymq+8BxBttYpTuOlUnhPJ29BAP\nY2KCShXGDMoeJoQCoia5wduh1i+NPbitaOxe1Hf4zlIwwv1lDTra6kZ5eVGsNir6\nH5/d2ww2yQKBgAmiVFl5DTNWk9cNvDogMTKRQ+flHPfJjT33Z3Smsb5xD/YFTw76\nHWgdXsKfywkoXdVI2ZYtZHjd4ffTQFak+YdnLqstSUz/YUE+thvFWjMnRo7wvsn3\n70cpyJ+NykTScq7A4wy2AQTE70eks7xGeFlAcF3ZAUxtJrOYZDovWhadAoGAao3E\nzko8Cv95mUon8gUkq6q6TWPx3WcnrjUvqVQuXgLgtGfOFOO4c+jZ6qr86UZfyLdE\ntjXKPdh4qtyXXU2TkHJ2auMPio1bLsxsrmmqOXucLIjQspIIgB4cTIFv6HDzMuqn\nc4aiXo60jmP77yklJ7Cx5p4uIZirmxT08WvwsHECgYEA2Z+D6t3JxurlH1l/BiR+\nxJexIDGQLk8HIVtE/BprhkS5rohbVoLPF90us0Fj1gi1o2vNMScTQCB6INlJK/k1\nubZzaeOTWNLsMhm+aQlKW1pTMZXS28YkCSjUUdRHg/qtBC3sGQfqmUlP9ZhN2GLe\nx5yXvb4od8RW2o4kzaR1MFo=\n-----END PRIVATE KEY-----\n",
+  "client_email": "fordgame@omega-rhino-235315.iam.gserviceaccount.com",
+  "client_id": "103189129896639025657",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/fordgame%40omega-rhino-235315.iam.gserviceaccount.com"
+}
