@@ -11,16 +11,23 @@
 </div>
 <div id="quizQuestionsBox">
     <h3>You’re cutting it close, and of course, you get stopped at the traffic light. As you’re waiting for the light to turn green, a homeless woman approaches you. She says that if you can answer her question correctly, she’ll tell you about a shortcut you can use to get to Ford. If you get it wrong, well, the clock’s still ticking!</h3>
-    <p th:text="'Question: ' + ${mcQuestion}"></p>
+    <p th:text="${mcQuestion}"></p>
 </div>
 <div id="quizDetailsContainer">
-    <div id="quizResponse"><p>question response</p></div>
+    <div id="quizResponse"><p th:text="${result}"></p></div>
     <div id="quizForm">
-        <form>
-            Enter Response Here:<br>
-            <input type="text" name="answer"><br>
+        <form action="mcUserAnswer" method="get">
+            <input type="radio" name="answer" value="a" required>A</input>
+            <input type="radio" name="answer" value="b" required>B</input>
+            <input type="radio" name="answer" value="c" required>C</input>
+            <input type="radio" name="answer" value="d" required>D</input>
+            <input type="hidden" name="banana" th:value="${mcAnswer}" />
+            <input type="submit" value="Submit" name="answerSubmit">
         </form>
     </div>
+</div>
+<div id="nextPageButton">
+    <a th:text="${next}" style="color: #a50000" th:href="@{/bossTwo}"></a>
 </div>
 <div id="playerDetailsContainer">
     <div id="details">

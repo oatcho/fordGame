@@ -11,16 +11,21 @@
 </div>
 <div id="quizQuestionsBox">
     <h3>As you step out of your door to get into your car, you’re stopped by Little Johnny from next door. He knows you’re working at Ford now and he wants to see how committed you are to the company. Being the kind-hearted human you are, you decide to entertain him. The sooner you answer his question correctly, the sooner you can say goodbye and get to work!</h3>
-    <p th:text="'Question: ' + ${tfQuestion}"></p>
+    <p th:text="${tfQuestion}"></p>
 </div>
 <div id="quizDetailsContainer">
-    <div id="quizResponse"><p>question response</p></div>
+    <div id="quizResponse"><p th:text="${result}"></p></div>
     <div id="quizForm">
-        <form>
-        Enter Response Here:<br>
-        <input type="text" name="answer"><br>
+        <form action="userAnswer" method="get">
+            <input type="radio" name="answer" value="t" required>True</input>
+            <input type="radio" name="answer" value="f" required>False</input>
+            <input type="hidden" name="banana" th:value="${tfAnswer}" />
+            <input type="submit" value="Submit" name="answerSubmit">
         </form>
     </div>
+</div>
+<div id="nextPageButton">
+    <a th:text="${next}" style="color: #a50000" th:href="@{/bossOne}"></a>
 </div>
 <div id="playerDetailsContainer">
     <div id="details">

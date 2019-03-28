@@ -22,8 +22,45 @@ public class GameController {
     Pokemon pokemon;
     PokemonSprite pokemonSprite;
 
+    //Pokemon pokemon;
+    //PokemonSprite pokemonSprite;
+    //int randomQuestion = quizRepository.generateRandomNumberForTfQuestion();
+    QuizRepository quizRepository = new QuizRepository();
+
+    public int questionIndex = quizRepository.generateRandomNumberForTfQuestion();
+
     @Autowired
     Pokemonservice pokemonservice;
+
+//    @RequestMapping("/")
+//    public String displayPokemon(ModelMap modelMap) {
+//        Pokemon pikachu = pokemonservice.fetchSinglePokemon(25);
+////        Pokemon graveler
+//
+//        Pokemon graveler = pokemonservice.fetchSinglePokemon(75);
+//
+//        PokemonSprite pokemonSprite = pikachu.getPokemonSprite();
+//        List<PokemonMoves> pokemonMoves = pikachu.getPokemonMoves();
+//        String moveName = pokemonMoves.get(0).getMoves().getName();
+//
+//        List<PokemonMoves> gravelerMoves = graveler.getPokemonMoves();
+//        String gravelerMoveName = pokemonMoves.get(0).getMoves().getName();
+//
+//
+//        modelMap.put("pikachuSprite", pokemonSprite);
+//        modelMap.put("pikachuName", pikachu.getName());
+////        modelMap.put("move", moveName);
+//        modelMap.put("pikachuMove", pikachu.getPokemonMoves());
+//        modelMap.put("pikachuWeight", pikachu.getWeight());
+//        modelMap.put("pikachuBaseExperience", pikachu.getBase_experience());
+//        modelMap.put("pikachuId", pikachu.getId());
+//
+//        modelMap.put("gravelerName", graveler.getName());
+//        modelMap.put("gravelerSprite", graveler.getPokemonSprite());
+//        modelMap.put("gravelerMove", gravelerMoveName);
+//
+//        return "start";
+//    }
 
     @RequestMapping("/")
     public String displayStartPage(ModelMap modelMap) {
@@ -32,19 +69,51 @@ public class GameController {
     }
 
     @RequestMapping("/quizOne")
-    public String displayFirstQuizPage(ModelMap modelMap, QuizRepository quizRepository) {
-       setPlayerPokemonDetails(modelMap);
-       String question = QuizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion()).getQuestion();
-       modelMap.put("tfQuestion", question);
+    public String displayFirstQuizPage(ModelMap modelMap) {
+        setPlayerPokemonDetails(modelMap);
+        setNewTfQuestion(modelMap);
         return "quiz1";
     }
 
-    @RequestMapping("/quizTwo")
-    public String displaySecondQuizPage(ModelMap modelMap, QuizRepository quizRepository){
+    @RequestMapping("userAnswer")
+    public ModelAndView quizLogic(@RequestParam("answer") String userAnswer, @RequestParam("banana") String tfAnswer,ModelMap modelMap){
+        String quizResult = quizRepository.checkTrueFalseAnswer(userAnswer, tfAnswer);
+        if (quizResult.equalsIgnoreCase("correct!")){
+            String correctAnswer = "Johnny's satisfied with your competence and allows you to get on your way.";
+            modelMap.put("tfQuestion", correctAnswer);
+        }else {
+            setNewTfQuestion(modelMap);
+        }
+        String nextPage = showNextButtonOnQuizPages(quizResult);
+        ModelAndView mv = new ModelAndView("quiz1");
         setPlayerPokemonDetails(modelMap);
-        String question = QuizRepository.ALL_MC_QUETIONS.get(quizRepository.generateRandomNumberforMcQuestion()).getQuestion();
-        modelMap.put("mcQuestion", question);
+        mv.addObject("result", quizResult);
+        mv.addObject("next", nextPage);
+        return mv;
+    }
+
+    @RequestMapping("/quizTwo")
+    public String displaySecondQuizPage(ModelMap modelMap){
+        setPlayerPokemonDetails(modelMap);
+        setNewMcQuestion(modelMap);
         return "quiz2";
+    }
+
+    @RequestMapping("mcUserAnswer")
+    public ModelAndView quiz2Logic(@RequestParam("answer") String userAnswer, @RequestParam("banana") String mcAnswer,ModelMap modelMap){
+        String quizResult = quizRepository.checkMultipleChoiceAnswer(userAnswer, mcAnswer);
+        if (quizResult.equalsIgnoreCase("correct!")){
+            String correctAnswer = "The homeless woman is satisfied, she tells you about a route through an alley that you can take to avoid traffic. You save 5 minutes on your drive!";
+            modelMap.put("mcQuestion", correctAnswer);
+        }else {
+            setNewMcQuestion(modelMap);
+        }
+        String nextPage = showNextButtonOnQuizPages(quizResult);
+        ModelAndView mv = new ModelAndView("quiz2");
+        setPlayerPokemonDetails(modelMap);
+        mv.addObject("result", quizResult);
+        mv.addObject("next", nextPage);
+        return mv;
     }
 
     private void setPlayerPokemonDetails(ModelMap modelMap) {
@@ -58,6 +127,32 @@ public class GameController {
         modelMap.put("pikachuId", pikachu.getId());
     }
 
+    private void setNewTfQuestion(ModelMap modelMap){
+        Question randomGenQuestion= quizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion());
+        String question = randomGenQuestion.getQuestion();
+//       String question = quizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion()).getQuestion();
+        String questionAnswer = randomGenQuestion.getAnswer();
+        modelMap.put("tfQuestion", question);
+        modelMap.put("tfAnswer", questionAnswer);
+    }
+
+    private void setNewMcQuestion(ModelMap modelMap){
+        Question randomGenQuestion= quizRepository.ALL_MC_QUETIONS.get(quizRepository.generateRandomNumberforMcQuestion());
+        String question = randomGenQuestion.getQuestion();
+        String questionAnswer = randomGenQuestion.getAnswer();
+        modelMap.put("mcQuestion", question);
+        modelMap.put("mcAnswer", questionAnswer);
+    }
+
+    public String showNextButtonOnQuizPages(String result) {
+        String nextButton = "";
+        String nextButtonCorrect = "←Next Level";
+        if (result.equalsIgnoreCase("correct!")) {
+            return nextButtonCorrect;
+        } else {
+            return nextButton;
+        }
+    }
     private void setBossPokemonDetails(ModelMap modelMap) {
         Pokemon graveler = pokemonservice.fetchSinglePokemon(75);
         PokemonSprite pokemonSprite = graveler.getPokemonSprite();
