@@ -13,32 +13,31 @@ public class QuizRepository {
     );
 
     public static final List<Question> ALL_MC_QUETIONS = Arrays.asList(
-            new Question("Which scooter rental company did Ford recently acquire?\n" +
+            new Question("Question: Which scooter rental company did Ford recently acquire?\n" +
                     "a.) Spin \n" +
                     "b.) Lime \n" +
                     "c.) Bird \n" +
                     "d.) Fyre", "a"),
-            new Question("How much did Ford purchase Michigan Central Station for? \n" +
+            new Question("Question: How much did Ford purchase Michigan Central Station for? \n" +
                     "a.) $90 Million \n" +
                     "b.) $200 Million \n" +
                     "c.) $30 Million \n" +
                     "d.) $1 Billion", "a"),
-            new Question("Whom did Ford recently hire to be replace current CFO, Bob Shanks?\n" +
+            new Question("Question: Whom did Ford recently hire to be replace current CFO, Bob Shanks?\n" +
                     "a.) James Hackett \n" +
                     "b.) Abraham Lincoln \n" +
                     "c.) Paul Glomski \n" +
                     "d.) Tim Stone", "d")
     );
 
-    public String checkMultipleChoiceAnswer(String userInput){
-        for(Question question: ALL_MC_QUETIONS){
-            if (userInput.equalsIgnoreCase(question.getAnswer())){
-                return "Correct! :)";
-            } else if (!userInput.equalsIgnoreCase(question.getAnswer())) {
-                return "Incorrect! :(";
+    public String checkMultipleChoiceAnswer(String userInput, String questionAnswer){
+        String correct = "Correct!";
+        String incorrect = "Incorrect!";
+            if (userInput.equalsIgnoreCase(questionAnswer)){
+                return correct;
+            } else {
+                return incorrect;
             }
-        }
-        return "";
     }
 
     public String checkTrueFalseAnswer(String userInput, String questionAnswer){

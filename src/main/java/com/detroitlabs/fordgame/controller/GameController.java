@@ -69,23 +69,13 @@ public class GameController {
 
     @RequestMapping("/quizOne")
     public String displayFirstQuizPage(ModelMap modelMap) {
-       setPlayerPokemonDetails(modelMap);
-//       Question randomGenQuestion= quizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion());
-//       String question = randomGenQuestion.getQuestion();
-////       String question = quizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion()).getQuestion();
-//       String questionAnswer = randomGenQuestion.getAnswer();
+        setPlayerPokemonDetails(modelMap);
         setNewTfQuestion(modelMap);
-//        modelMap.put("tfQuestion", question);
-//        modelMap.put("tfAnswer", questionAnswer);
-
-
-       String randQuestionsAnswer = "hello";
         return "quiz1";
     }
 
     @RequestMapping("userAnswer")
     public ModelAndView quizLogic(@RequestParam("answer") String userAnswer, @RequestParam("banana") String tfAnswer,ModelMap modelMap){
-//        System.out.println(answer);
         String quizResult = quizRepository.checkTrueFalseAnswer(userAnswer, tfAnswer);
         if (quizResult.equalsIgnoreCase("correct!")){
             String correctAnswer = "Johnny's satisfied with your competence and allows you to get on your way.";
@@ -93,8 +83,6 @@ public class GameController {
         }else {
             setNewTfQuestion(modelMap);
         }
-
-//        setNewTfQuestion(modelMap);
         ModelAndView mv = new ModelAndView("quiz1");
         setPlayerPokemonDetails(modelMap);
         mv.addObject("result", quizResult);
@@ -103,11 +91,26 @@ public class GameController {
     }
 
     @RequestMapping("/quizTwo")
-    public String displaySecondQuizPage(ModelMap modelMap, QuizRepository quizRepository){
+    public String displaySecondQuizPage(ModelMap modelMap){
         setPlayerPokemonDetails(modelMap);
-        String question = QuizRepository.ALL_MC_QUETIONS.get(quizRepository.generateRandomNumberforMcQuestion()).getQuestion();
-        modelMap.put("mcQuestion", question);
+        setNewMcQuestion(modelMap);
         return "quiz2";
+    }
+
+    @RequestMapping("mcUserAnswer")
+    public ModelAndView quiz2Logic(@RequestParam("answer") String userAnswer, @RequestParam("banana") String mcAnswer,ModelMap modelMap){
+        String quizResult = quizRepository.checkMultipleChoiceAnswer(userAnswer, mcAnswer);
+        if (quizResult.equalsIgnoreCase("correct!")){
+            String correctAnswer = "The homeless woman is satisfied, she tells you about a route through an alley that you can take to avoid traffic. You save 5 minutes on your drive!";
+            modelMap.put("mcQuestion", correctAnswer);
+        }else {
+            setNewMcQuestion(modelMap);
+        }
+        ModelAndView mv = new ModelAndView("quiz2");
+        setPlayerPokemonDetails(modelMap);
+        mv.addObject("result", quizResult);
+
+        return mv;
     }
 
     private void setPlayerPokemonDetails(ModelMap modelMap) {
@@ -128,6 +131,14 @@ public class GameController {
         String questionAnswer = randomGenQuestion.getAnswer();
         modelMap.put("tfQuestion", question);
         modelMap.put("tfAnswer", questionAnswer);
+    }
+
+    private void setNewMcQuestion(ModelMap modelMap){
+        Question randomGenQuestion= quizRepository.ALL_MC_QUETIONS.get(quizRepository.generateRandomNumberforMcQuestion());
+        String question = randomGenQuestion.getQuestion();
+        String questionAnswer = randomGenQuestion.getAnswer();
+        modelMap.put("mcQuestion", question);
+        modelMap.put("mcAnswer", questionAnswer);
     }
 
 }
