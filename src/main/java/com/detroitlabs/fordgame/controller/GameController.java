@@ -64,4 +64,25 @@ public class GameController {
                 break;
         }
     }
+
+    public void startAtBeginning() {
+
+    }
+
+    public void startAtQuizRoomOne() {
+
+    }
+
+    public void startAtQuizRoomTwo() {
+
+    }
+
+    public void startAtGMBossRoom() {
+
+    }
+
+    public void startAtChryslerBossRoom() {
+
+    }
+
 }
