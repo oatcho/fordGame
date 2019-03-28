@@ -110,7 +110,7 @@ public class GameController {
 
     public String showNextButton(String moveChoice) {
         String nextButton = "";
-        String nextButtonCorrect = "next";
+        String nextButtonCorrect = "←Next Level";
         if (moveChoice.equals("x")) {
             return nextButton;
         } else if (moveChoice.equals("y")) {

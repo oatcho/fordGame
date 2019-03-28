@@ -14,9 +14,9 @@
     <h3>GM Manager</h3>
     <p th:text="${gravelerName}"></p>
     <img th:src="${gravelerSprite.getFront_default()}" id="gravelerImage" alt="graveler">
-    <div>
-        <p th:text="${next}"></p>
-    </div>
+</div>
+<div id="nextPageButton">
+    <a th:text="${next}" style="color: #a50000" th:href="@{/quizTwo}"></a>
 </div>
 
 <div id="battleActionField">
@@ -40,10 +40,10 @@
         <div id="moveContainer">
             <form action="userMoveChoice" method="get">
                 <div id="allMoves">
-                    <input class="moves" type="radio" name="moveChoice" value="x" required> Move 1 </input>
-                    <input class="moves" type="radio" name="moveChoice" value="x" required> Move 2 </input>
-                    <input class="moves" type="radio" name="moveChoice" value="x" required> Move 3 </input>
-                    <input class="moves" type="radio" name="moveChoice" value="y" required> Move 4 </input>
+                    <input class="moves" type="radio" name="moveChoice" value="x" required> F-150 Terrain Tackle </input>
+                    <input class="moves" type="radio" name="moveChoice" value="x" required> Henry Ford Hurdle </input>
+                    <input class="moves" type="radio" name="moveChoice" value="x" required> Mustang Trample </input>
+                    <input class="moves" type="radio" name="moveChoice" value="y" required> Ford Fusion Beam </input>
                     <input class="moves" type="submit" value="Attack" name="attackSubmit">
                 </div>
             </form>
