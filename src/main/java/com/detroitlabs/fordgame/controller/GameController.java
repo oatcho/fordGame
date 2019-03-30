@@ -2,11 +2,9 @@ package com.detroitlabs.fordgame.controller;
 
 import com.detroitlabs.fordgame.data.QuizRepository;
 import com.detroitlabs.fordgame.model.Pokemon;
-import com.detroitlabs.fordgame.model.PokemonMoves;
 import com.detroitlabs.fordgame.model.PokemonSprite;
 import com.detroitlabs.fordgame.model.Question;
 import com.detroitlabs.fordgame.service.Pokemonservice;
-import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,60 +12,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
 @Controller
 public class GameController {
 
-    Pokemon pokemon;
-    PokemonSprite pokemonSprite;
-
-    //Pokemon pokemon;
-    //PokemonSprite pokemonSprite;
-    //int randomQuestion = quizRepository.generateRandomNumberForTfQuestion();
     QuizRepository quizRepository = new QuizRepository();
-
-    public int questionIndex = quizRepository.generateRandomNumberForTfQuestion();
 
     @Autowired
     Pokemonservice pokemonservice;
 
-//    @RequestMapping("/")
-//    public String displayPokemon(ModelMap modelMap) {
-//        Pokemon pikachu = pokemonservice.fetchSinglePokemon(25);
-////        Pokemon graveler
-//
-//        Pokemon graveler = pokemonservice.fetchSinglePokemon(75);
-//
-//        PokemonSprite pokemonSprite = pikachu.getPokemonSprite();
-//        List<PokemonMoves> pokemonMoves = pikachu.getPokemonMoves();
-//        String moveName = pokemonMoves.get(0).getMoves().getName();
-//
-//        List<PokemonMoves> gravelerMoves = graveler.getPokemonMoves();
-//        String gravelerMoveName = pokemonMoves.get(0).getMoves().getName();
-//
-//
-//        modelMap.put("pikachuSprite", pokemonSprite);
-//        modelMap.put("pikachuName", pikachu.getName());
-////        modelMap.put("move", moveName);
-//        modelMap.put("pikachuMove", pikachu.getPokemonMoves());
-//        modelMap.put("pikachuWeight", pikachu.getWeight());
-//        modelMap.put("pikachuBaseExperience", pikachu.getBase_experience());
-//        modelMap.put("pikachuId", pikachu.getId());
-//
-//        modelMap.put("gravelerName", graveler.getName());
-//        modelMap.put("gravelerSprite", graveler.getPokemonSprite());
-//        modelMap.put("gravelerMove", gravelerMoveName);
-//
-//        return "start";
-//    }
-
+    // **** Start Page **** //
     @RequestMapping("/")
     public String displayStartPage(ModelMap modelMap) {
         setPlayerPokemonDetails(modelMap);
         return "start";
     }
 
+    private void setPlayerPokemonDetails(ModelMap modelMap) {
+        Pokemon pikachu = pokemonservice.fetchSinglePokemon(25);
+        PokemonSprite pokemonSprite = pikachu.getPokemonSprite();
+        modelMap.put("pikachuSprite", pokemonSprite);
+        modelMap.put("pikachuName", pikachu.getName());
+        modelMap.put("pikachuMove", pikachu.getPokemonMoves());
+        modelMap.put("pikachuWeight", pikachu.getWeight());
+        modelMap.put("pikachuBaseExperience", pikachu.getBase_experience());
+        modelMap.put("pikachuId", pikachu.getId());
+    }
+    // **** **** //
+
+    // **** Quiz One **** //
     @RequestMapping("/quizOne")
     public String displayFirstQuizPage(ModelMap modelMap) {
         setPlayerPokemonDetails(modelMap);
@@ -92,6 +64,50 @@ public class GameController {
         return mv;
     }
 
+    private void setNewTfQuestion(ModelMap modelMap){
+        Question randomGenQuestion= quizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion());
+        String question = randomGenQuestion.getQuestion();
+        String questionAnswer = randomGenQuestion.getAnswer();
+        modelMap.put("tfQuestion", question);
+        modelMap.put("tfAnswer", questionAnswer);
+    }
+    // **** **** //
+
+    // **** Boss One **** //
+    @RequestMapping("/bossOne")
+    public String displayBossBattle1(ModelMap modelMap) {
+        setPlayerPokemonDetails(modelMap);
+        setBossPokemonDetails(modelMap);
+        return "boss";
+    }
+
+    private void setBossPokemonDetails(ModelMap modelMap) {
+        Pokemon graveler = pokemonservice.fetchSinglePokemon(75);
+        PokemonSprite pokemonSprite = graveler.getPokemonSprite();
+        modelMap.put("gravelerSprite", pokemonSprite);
+        modelMap.put("gravelerName", graveler.getName());
+        modelMap.put("gravelerMove", graveler.getPokemonMoves());
+        modelMap.put("gravelerWeight", graveler.getWeight());
+        modelMap.put("gravelerBaseExperience", graveler.getBase_experience());
+        modelMap.put("gravelerId", graveler.getId());
+    }
+
+    @RequestMapping("userMoveChoice")
+    public ModelAndView battleLogic(@RequestParam("moveChoice") String moveChoice, ModelMap modelMap){
+        ModelAndView mv = new ModelAndView("boss");
+        String battleResult = checkBattleStatus(moveChoice);
+        String nextPage = showNextButton(moveChoice);
+        mv.addObject("result", battleResult);
+        mv.addObject("next", nextPage);
+
+        setPlayerPokemonDetails(modelMap);
+        setBossPokemonDetails(modelMap);
+
+        return mv;
+    }
+    // **** **** //
+
+    // **** Quiz Two **** //
     @RequestMapping("/quizTwo")
     public String displaySecondQuizPage(ModelMap modelMap){
         setPlayerPokemonDetails(modelMap);
@@ -116,26 +132,6 @@ public class GameController {
         return mv;
     }
 
-    private void setPlayerPokemonDetails(ModelMap modelMap) {
-        Pokemon pikachu = pokemonservice.fetchSinglePokemon(25);
-        PokemonSprite pokemonSprite = pikachu.getPokemonSprite();
-        modelMap.put("pikachuSprite", pokemonSprite);
-        modelMap.put("pikachuName", pikachu.getName());
-        modelMap.put("pikachuMove", pikachu.getPokemonMoves());
-        modelMap.put("pikachuWeight", pikachu.getWeight());
-        modelMap.put("pikachuBaseExperience", pikachu.getBase_experience());
-        modelMap.put("pikachuId", pikachu.getId());
-    }
-
-    private void setNewTfQuestion(ModelMap modelMap){
-        Question randomGenQuestion= quizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion());
-        String question = randomGenQuestion.getQuestion();
-//       String question = quizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion()).getQuestion();
-        String questionAnswer = randomGenQuestion.getAnswer();
-        modelMap.put("tfQuestion", question);
-        modelMap.put("tfAnswer", questionAnswer);
-    }
-
     private void setNewMcQuestion(ModelMap modelMap){
         Question randomGenQuestion= quizRepository.ALL_MC_QUETIONS.get(quizRepository.generateRandomNumberforMcQuestion());
         String question = randomGenQuestion.getQuestion();
@@ -143,25 +139,14 @@ public class GameController {
         modelMap.put("mcQuestion", question);
         modelMap.put("mcAnswer", questionAnswer);
     }
+    // **** **** //
 
-    public String showNextButtonOnQuizPages(String result) {
-        String nextButton = "";
-        String nextButtonCorrect = "←Next Level";
-        if (result.equalsIgnoreCase("correct!")) {
-            return nextButtonCorrect;
-        } else {
-            return nextButton;
-        }
-    }
-    private void setBossPokemonDetails(ModelMap modelMap) {
-        Pokemon graveler = pokemonservice.fetchSinglePokemon(75);
-        PokemonSprite pokemonSprite = graveler.getPokemonSprite();
-        modelMap.put("gravelerSprite", pokemonSprite);
-        modelMap.put("gravelerName", graveler.getName());
-        modelMap.put("gravelerMove", graveler.getPokemonMoves());
-        modelMap.put("gravelerWeight", graveler.getWeight());
-        modelMap.put("gravelerBaseExperience", graveler.getBase_experience());
-        modelMap.put("gravelerId", graveler.getId());
+    // **** Boss Two **** //
+    @RequestMapping("/bossTwo")
+    public String displayBossBattle2(ModelMap modelMap) {
+        setPlayerPokemonDetails(modelMap);
+        setBoss2PokemonDetails(modelMap);
+        return "boss2";
     }
 
     private void setBoss2PokemonDetails(ModelMap modelMap) {
@@ -176,36 +161,6 @@ public class GameController {
     }
 
 
-    @RequestMapping("/bossOne")
-    public String displayBossBattle1(ModelMap modelMap) {
-        setPlayerPokemonDetails(modelMap);
-        setBossPokemonDetails(modelMap);
-        return "boss";
-    }
-
-    @RequestMapping("/bossTwo")
-    public String displayBossBattle2(ModelMap modelMap) {
-        setPlayerPokemonDetails(modelMap);
-        setBoss2PokemonDetails(modelMap);
-        return "boss2";
-    }
-
-
-
-    @RequestMapping("userMoveChoice")
-    public ModelAndView battleLogic(@RequestParam("moveChoice") String moveChoice, ModelMap modelMap){
-        ModelAndView mv = new ModelAndView("boss");
-        String battleResult = checkBattleStatus(moveChoice);
-        String nextPage = showNextButton(moveChoice);
-        mv.addObject("result", battleResult);
-        mv.addObject("next", nextPage);
-
-        setPlayerPokemonDetails(modelMap);
-        setBossPokemonDetails(modelMap);
-
-        return mv;
-    }
-
     @RequestMapping("userMoveChoice2")
     public ModelAndView battleLogic2(@RequestParam("moveChoice2") String moveChoice2, ModelMap modelMap){
         ModelAndView mv = new ModelAndView("boss2");
@@ -219,7 +174,9 @@ public class GameController {
 
         return mv;
     }
+    // **** **** //
 
+    // **** Battle Logic **** //
     public String checkBattleStatus(String moveChoice){
         String move1 = "This move is not effective";
         String move3 = "Super effective, you defeated the boss";
@@ -230,6 +187,18 @@ public class GameController {
             return move1;
         }
         return "";
+    }
+    // **** **** //
+
+    // **** Conditional Button Render **** //
+    public String showNextButtonOnQuizPages(String result) {
+        String nextButton = "";
+        String nextButtonCorrect = "←Next Level";
+        if (result.equalsIgnoreCase("correct!")) {
+            return nextButtonCorrect;
+        } else {
+            return nextButton;
+        }
     }
 
     public String showNextButton(String moveChoice) {
@@ -242,6 +211,7 @@ public class GameController {
         }
         return "";
     }
+    // **** **** //
 
 }
 
