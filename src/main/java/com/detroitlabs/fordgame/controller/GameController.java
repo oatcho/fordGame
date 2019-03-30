@@ -18,25 +18,26 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class GameController {
 
-    QuizRepository quizRepository = new QuizRepository();
-    Time timer = new Time();
+    private QuizRepository quizRepository = new QuizRepository();
+    private Time timer = new Time();
 
     @Autowired
     Pokemonservice pokemonservice;
 
     @Autowired
-    private UserService userService;
+    UserService userService;
 
     @RequestMapping(value={"/login"}, method = RequestMethod.GET)
-    public ModelAndView login(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("login");
-        return modelAndView;
+    public String login(@RequestParam(value = "param.error", required = false) String error) {
+        if (error != null) {
+            return "error-page";
+        } else {
+            return "login";
+        }
     }
 
-
     // **** Start Page **** //
-    @RequestMapping("/game")
+    @RequestMapping("/")
     public String displayStartPage(ModelMap modelMap) {
         setPlayerPokemonDetails(modelMap);
         return "start";
@@ -82,7 +83,7 @@ public class GameController {
     }
 
     private void setNewTfQuestion(ModelMap modelMap){
-        Question randomGenQuestion= quizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion());
+        Question randomGenQuestion= QuizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion());
         String question = randomGenQuestion.getQuestion();
         String questionAnswer = randomGenQuestion.getAnswer();
         modelMap.put("tfQuestion", question);
@@ -152,7 +153,7 @@ public class GameController {
     }
 
     private void setNewMcQuestion(ModelMap modelMap){
-        Question randomGenQuestion= quizRepository.ALL_MC_QUETIONS.get(quizRepository.generateRandomNumberforMcQuestion());
+        Question randomGenQuestion= QuizRepository.ALL_MC_QUETIONS.get(quizRepository.generateRandomNumberforMcQuestion());
         String question = randomGenQuestion.getQuestion();
         String questionAnswer = randomGenQuestion.getAnswer();
         modelMap.put("mcQuestion", question);
@@ -196,7 +197,7 @@ public class GameController {
     // **** **** //
 
     // **** Battle Logic **** //
-    public String checkBattleStatus(String moveChoice){
+    private String checkBattleStatus(String moveChoice){
         String move1 = "This move is not effective";
         String move3 = "Super effective, you defeated the boss";
 
@@ -212,7 +213,7 @@ public class GameController {
     // **** **** //
 
     // **** Conditional Button Render **** //
-    public String showNextButtonOnQuizPages(String result) {
+    private String showNextButtonOnQuizPages(String result) {
         String nextButton = "";
         String nextButtonCorrect = "←Next Level";
         if (result.equalsIgnoreCase("correct!")) {
@@ -224,7 +225,7 @@ public class GameController {
         }
     }
 
-    public String showNextButton(String moveChoice) {
+    private String showNextButton(String moveChoice) {
         String nextButton = "";
         String nextButtonCorrect = "←Next Level";
         if (moveChoice.equals("x")) {
