@@ -5,6 +5,8 @@ import com.detroitlabs.fordgame.model.*;
 import com.detroitlabs.fordgame.service.Pokemonservice;
 import com.detroitlabs.fordgame.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -71,6 +73,9 @@ public class GameController {
     @RequestMapping("/")
     public String displayStartPage(ModelMap modelMap) {
         setPlayerPokemonDetails(modelMap);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        modelMap.put("user", user);
         return "start";
     }
 
