@@ -65,6 +65,10 @@ public class GameController {
         }
     }
 
+    public GameState checkGameState() {
+        return null;
+    }
+
     public void startAtBeginning() {
 
     }
