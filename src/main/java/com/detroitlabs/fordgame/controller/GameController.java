@@ -4,6 +4,7 @@ import com.detroitlabs.fordgame.data.QuizRepository;
 import com.detroitlabs.fordgame.model.Pokemon;
 import com.detroitlabs.fordgame.model.PokemonSprite;
 import com.detroitlabs.fordgame.model.Question;
+import com.detroitlabs.fordgame.model.Time;
 import com.detroitlabs.fordgame.service.Pokemonservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class GameController {
 
     QuizRepository quizRepository = new QuizRepository();
+    Time timer = new Time();
 
     @Autowired
     Pokemonservice pokemonservice;
@@ -52,9 +54,11 @@ public class GameController {
         String quizResult = quizRepository.checkTrueFalseAnswer(userAnswer, tfAnswer);
         if (quizResult.equalsIgnoreCase("correct!")){
             String correctAnswer = "Johnny's satisfied with your competence and allows you to get on your way.";
+            timer.addTimeForCorrectQuizAnswer();
             modelMap.put("tfQuestion", correctAnswer);
         }else {
             setNewTfQuestion(modelMap);
+            timer.subtractTimeForQuiz();
         }
         String nextPage = showNextButtonOnQuizPages(quizResult);
         ModelAndView mv = new ModelAndView("quiz1");
@@ -120,8 +124,10 @@ public class GameController {
         String quizResult = quizRepository.checkMultipleChoiceAnswer(userAnswer, mcAnswer);
         if (quizResult.equalsIgnoreCase("correct!")){
             String correctAnswer = "The homeless woman is satisfied, she tells you about a route through an alley that you can take to avoid traffic. You save 5 minutes on your drive!";
+            timer.addTimeForCorrectQuizAnswer();
             modelMap.put("mcQuestion", correctAnswer);
         }else {
+            timer.subtractTimeForQuiz();
             setNewMcQuestion(modelMap);
         }
         String nextPage = showNextButtonOnQuizPages(quizResult);
@@ -182,8 +188,10 @@ public class GameController {
         String move3 = "Super effective, you defeated the boss";
 
         if (moveChoice.equals("y")) {
+            timer.addTimeForBeatingBoss();
             return move3;
         } else if (moveChoice.equals("x")) {
+            timer.subtractTimeForBossBattle();
             return move1;
         }
         return "";
@@ -195,8 +203,10 @@ public class GameController {
         String nextButton = "";
         String nextButtonCorrect = "←Next Level";
         if (result.equalsIgnoreCase("correct!")) {
+            timer.subtractTimeForAction();
             return nextButtonCorrect;
         } else {
+            timer.subtractTimeForAction();
             return nextButton;
         }
     }
@@ -205,8 +215,10 @@ public class GameController {
         String nextButton = "";
         String nextButtonCorrect = "←Next Level";
         if (moveChoice.equals("x")) {
+            timer.subtractTimeForAction();
             return nextButton;
         } else if (moveChoice.equals("y")) {
+            timer.subtractTimeForAction();
             return nextButtonCorrect;
         }
         return "";

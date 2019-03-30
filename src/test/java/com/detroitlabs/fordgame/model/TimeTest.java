@@ -54,4 +54,12 @@ public class TimeTest {
 
         assertThat(expectedSting, equalTo(resultOfMethodCall));
     }
+
+    @Test
+    public void addTimeForBeatingBoss() {
+        int expectedTimeLeft = 101;
+        int resultOfMethodCall = time.addTimeForBeatingBoss();
+
+        assertThat(expectedTimeLeft, equalTo(resultOfMethodCall));
+    }
 }
