@@ -10,13 +10,16 @@
     <h2 id="fordTitle">Ford Game</h2>
 </div>
 
+<div id="nextPageButton">
+    <div>
+        <a th:text="${next}" style="color: #fff9f8" th:href="@{/}"></a>
+    </div>
+</div>
+
 <div id="bossField">
     <h3>Chrysler Head Hunter</h3>
     <p th:text="${deoxysName}"></p>
     <img th:src="${deoxysSprite.getFront_default()}" id="gravelerImage">
-</div>
-<div id="nextPageButton">
-    <a th:text="${next}" style="color: #a50000" th:href="@{/}"></a>
 </div>
 
 <div id="battleActionField">
@@ -36,14 +39,19 @@
     </div>
 
     <div id="moves">
-        <h1>Moves</h1>
+        <h3 id="moveBanner">Moves</h3>
         <div id="moveContainer">
             <form action="userMoveChoice2" method="get">
                 <div id="allMoves">
-                    <input class="moves" type="radio" name="moveChoice2" value="y" required> F-150 Terrain Tackle </input>
+                    <input class="moves" type="radio" name="moveChoice2" value="y" required> F-150 Terrain
+                    Tackle </input>
+                    <br>
                     <input class="moves" type="radio" name="moveChoice2" value="x" required> Henry Ford Hurdle </input>
+                    <br>
                     <input class="moves" type="radio" name="moveChoice2" value="x" required> Mustang Trample </input>
+                    <br>
                     <input class="moves" type="radio" name="moveChoice2" value="x" required> Ford Fusion Beam </input>
+                    <br>
                     <input class="moves" type="submit" value="Attack" name="attackSubmit">
                 </div>
             </form>

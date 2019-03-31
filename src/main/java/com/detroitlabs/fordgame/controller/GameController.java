@@ -146,7 +146,7 @@ public class GameController {
 
     public String showNextButtonOnQuizPages(String result) {
         String nextButton = "";
-        String nextButtonCorrect = "←Next Level";
+        String nextButtonCorrect = "Next Level";
         if (result.equalsIgnoreCase("correct!")) {
             return nextButtonCorrect;
         } else {
@@ -234,7 +234,7 @@ public class GameController {
 
     public String showNextButton(String moveChoice) {
         String nextButton = "";
-        String nextButtonCorrect = "←Next Level";
+        String nextButtonCorrect = "Next Level";
         if (moveChoice.equals("x")) {
             return nextButton;
         } else if (moveChoice.equals("y")) {

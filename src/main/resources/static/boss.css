@@ -1,8 +1,8 @@
-body{
+body {
     background-image: linear-gradient(darkblue, white);
 }
 
-#gameTitle{
+#gameTitle {
     text-align: center;
     /*font-size: x-large;*/
     border-style: double;
@@ -14,14 +14,14 @@ body{
     background-color: #0b4284;
 }
 
-#fordTitle{
+#fordTitle {
     color: white;
     font-style: oblique;
     font-family: cursive;
 
 }
 
-#playerDetailsContainer{
+#playerDetailsContainer {
     display: flex;
     justify-content: space-around;
     height: 30vh;
@@ -31,7 +31,7 @@ body{
     background: #c3c3c3;
 }
 
-#prompt{
+#prompt {
     border-style: solid;
     height: 45vh;
     width: 75%;
@@ -39,7 +39,7 @@ body{
     background: #c3c3c3;
 }
 
-#details{
+#details {
     border-style: groove;
     border-color: #467fb4;
     background-color: #3b5b85;
@@ -48,7 +48,15 @@ body{
     text-align: center;
 }
 
-#moves{
+#moves {
+    border-style: groove;
+    border-color: #467fb4;
+    background-color: #3b5b85;
+    margin: 1%;
+    width: 30%;
+}
+
+#sprite {
     border-style: groove;
     border-color: #467fb4;
     background-color: #3b5b85;
@@ -57,17 +65,8 @@ body{
     text-align: center;
 }
 
-#sprite{
-    border-style: groove;
-    border-color: #467fb4;
-    background-color: #3b5b85;
-    margin: 1%;
-    width: 30%;
-    text-align: center;
-}
 
-
-#quizQuestionsBox{
+#quizQuestionsBox {
     border-style: solid;
     height: 39vh;
     width: 75%;
@@ -75,19 +74,19 @@ body{
     background: #c3c3c3;
 }
 
-#quizDetailsContainer{
+#quizDetailsContainer {
     display: flex;
     justify-content: space-around;
-    height: 10vh;
+    height: 13vh;
     border-style: solid;
     margin-top: 1%;
 }
 
-#pokemonDetails{
+#pokemonDetails {
 
 }
 
-#bossField{
+#bossField {
     text-align: center;
     border-style: groove;
     border-color: #467fb4;
@@ -95,42 +94,39 @@ body{
     width: 75%;
     margin: auto;
     background-color: #3b5b85;
-    box-shadow: black;
 
 }
 
-#pikachuImage{
+#pikachuImage {
     width: 50%;
 }
 
-#gravelerImage{
+#gravelerImage {
     height: 70%;
     float: top;
 }
 
 #moveContainer {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: space-between;
-    height: 100%;
 
 }
 
 #allMoves {
-    width: 40%;
-    height: 40%;
-    margin: auto;
+    margin-left: 30%;
 }
 
-.moves{
-    margin: 3%;
+#moveBanner {
+    text-align: center;
 }
 
-#battleActionField{
+.moves {
+    margin-bottom: 3%;
+}
+
+#battleActionField {
     border-style: groove;
     border-color: #467fb4;
     background-color: #3b5b85;
-    margin:auto;
+    margin: auto;
     text-align: center;
     height: 10%;
     width: 80%;
@@ -139,7 +135,15 @@ body{
 }
 
 #nextPageButton {
-    /*background-color: pink;*/
-    /*width: 500%;*/
+    margin-left: 79%;
+}
+
+#nextPageButton div {
+    background-color: #00ff07;
+    width: 35%;
+    padding: 2%;
+    text-align: center;
+    border-style: double;
+    border-color: white;
 }
 
