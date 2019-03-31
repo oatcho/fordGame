@@ -1,31 +1,81 @@
 package com.detroitlabs.fordgame.controller;
 
 import com.detroitlabs.fordgame.data.QuizRepository;
-import com.detroitlabs.fordgame.model.Pokemon;
-import com.detroitlabs.fordgame.model.PokemonSprite;
-import com.detroitlabs.fordgame.model.Question;
-import com.detroitlabs.fordgame.model.Time;
+import com.detroitlabs.fordgame.model.*;
 import com.detroitlabs.fordgame.service.Pokemonservice;
+import com.detroitlabs.fordgame.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 public class GameController {
 
-    QuizRepository quizRepository = new QuizRepository();
-    Time timer = new Time();
+    private QuizRepository quizRepository = new QuizRepository();
+    private Time timer = new Time();
 
     @Autowired
     Pokemonservice pokemonservice;
+
+    @Autowired
+    UserService userService;
+
+    // **** User Auth **** //
+    @RequestMapping(value={"/login"}, method = RequestMethod.GET)
+    public ModelAndView login(@RequestParam(value = "error", required = false) String error) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (error != null) {
+            modelAndView.setViewName("error-page");
+        } else modelAndView.setViewName("login");
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/registration", method = RequestMethod.GET)
+    public ModelAndView registration(){
+        ModelAndView modelAndView = new ModelAndView();
+        User user = new User();
+        modelAndView.addObject("user", user);
+        modelAndView.setViewName("registration");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
+        User userExists = userService.findUserByEmail(user.getEmail());
+        if (userExists != null) {
+            bindingResult
+                    .rejectValue("email", "error.user",
+                            "There is already a user registered with the email provided");
+        }
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("registration");
+        } else {
+            userService.saveUser(user);
+            modelAndView.addObject("successMessage", "User has been registered successfully");
+            modelAndView.addObject("user", new User());
+            modelAndView.setViewName("registration");
+        }
+        return modelAndView;
+    }
+    // **** **** //
 
     // **** Start Page **** //
     @RequestMapping("/")
     public String displayStartPage(ModelMap modelMap) {
         setPlayerPokemonDetails(modelMap);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        modelMap.put("user", user);
         return "start";
     }
 
@@ -69,7 +119,7 @@ public class GameController {
     }
 
     private void setNewTfQuestion(ModelMap modelMap){
-        Question randomGenQuestion= quizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion());
+        Question randomGenQuestion= QuizRepository.ALL_TRUE_FALSE_QUESTIONS.get(quizRepository.generateRandomNumberForTfQuestion());
         String question = randomGenQuestion.getQuestion();
         String questionAnswer = randomGenQuestion.getAnswer();
         modelMap.put("tfQuestion", question);
@@ -139,7 +189,7 @@ public class GameController {
     }
 
     private void setNewMcQuestion(ModelMap modelMap){
-        Question randomGenQuestion= quizRepository.ALL_MC_QUETIONS.get(quizRepository.generateRandomNumberforMcQuestion());
+        Question randomGenQuestion= QuizRepository.ALL_MC_QUETIONS.get(quizRepository.generateRandomNumberforMcQuestion());
         String question = randomGenQuestion.getQuestion();
         String questionAnswer = randomGenQuestion.getAnswer();
         modelMap.put("mcQuestion", question);
@@ -183,7 +233,7 @@ public class GameController {
     // **** **** //
 
     // **** Battle Logic **** //
-    public String checkBattleStatus(String moveChoice){
+    private String checkBattleStatus(String moveChoice){
         String move1 = "This move is not effective";
         String move3 = "Super effective, you defeated the boss";
 
@@ -199,7 +249,7 @@ public class GameController {
     // **** **** //
 
     // **** Conditional Button Render **** //
-    public String showNextButtonOnQuizPages(String result) {
+    private String showNextButtonOnQuizPages(String result) {
         String nextButton = "";
         String nextButtonCorrect = "←Next Level";
         if (result.equalsIgnoreCase("correct!")) {
@@ -211,7 +261,7 @@ public class GameController {
         }
     }
 
-    public String showNextButton(String moveChoice) {
+    private String showNextButton(String moveChoice) {
         String nextButton = "";
         String nextButtonCorrect = "←Next Level";
         if (moveChoice.equals("x")) {
