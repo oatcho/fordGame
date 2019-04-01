@@ -3,14 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Quiz2</title>
-    <link rel="stylesheet" th:href="@{main.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{boss.css}" type="text/css">
 </head>
 <body>
 <div id="gameTitle">
-    <h1>Pop Quiz!</h1>
+    <h1 id="fordTitle">Pop Quiz!</h1>
 </div>
+
+<div id="nextPageButton">
+    <div>
+    <a th:text="${next}" style="color: #fff9f8" th:href="@{/bossTwo}"></a>
+    </div>
+</div>
+
 <div id="quizQuestionsBox">
-    <h3>You’re cutting it close, and of course, you get stopped at the traffic light. As you’re waiting for the light to turn green, a homeless woman approaches you. She says that if you can answer her question correctly, she’ll tell you about a shortcut you can use to get to Ford. If you get it wrong, well, the clock’s still ticking!</h3>
+    <h3>You’re cutting it close, and of course, you get stopped at the traffic light.
+        As you’re waiting for the light to turn green, a recently laid off, and now homeless, former GM employee approaches you.
+        She says that if you can answer her question correctly, she’ll tell you about a shortcut you can use to get to Ford quicker.
+        If you get it wrong, well, the clock’s still ticking!</h3>
     <p th:text="${mcQuestion}"></p>
 </div>
 <div id="quizDetailsContainer">
@@ -24,14 +34,13 @@
             <input type="hidden" name="banana" th:value="${mcAnswer}" />
             <input type="submit" value="Submit" name="answerSubmit">
         </form>
+        <br>
     </div>
 </div>
-<div id="nextPageButton">
-    <a th:text="${next}" style="color: #a50000" th:href="@{/bossTwo}"></a>
-</div>
+
 <div id="playerDetailsContainer">
     <div id="details">
-        <h1>Pokemon Details:</h1>
+        <h3 id="detailBanner">Pokemon Details:</h3>
         <ul id="pokemonDetails">
             <li th:text="'Name: ' + ${pikachuName}"></li>
             <li th:text="'Pokemon ID: ' + ${pikachuId}"></li>
@@ -40,7 +49,7 @@
         </ul>
     </div>
     <div id="moves">
-        <h1>Moves:</h1>
+        <h3 id="moveBanner">Moves:</h3>
         <ul>
             <li>1) F-150 Terrain Tackle</li>
             <li>2) Henry Ford Hurdle</li>
@@ -49,7 +58,7 @@
         </ul>
     </div>
     <div id="sprite">
-        <img th:src="${pikachuSprite.getFront_default()}" alt="pikachu">
+        <img th:src="${pikachuSprite.getFront_default()}" id="pikachuImage" alt="pikachu">
     </div>
 </div>
 </body>

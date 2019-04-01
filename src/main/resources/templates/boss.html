@@ -10,23 +10,35 @@
     <h2 id="fordTitle">Ford Game</h2>
 </div>
 
+<div id="nextPageButton">
+    <div>
+        <a th:text="${next}" style="color: #fff6f9" th:href="@{/quizTwo}"></a>
+    </div>
+</div>
+
 <div id="bossField">
+    <div id="bossCard">
     <h3>GM Manager</h3>
     <p th:text="${gravelerName}"></p>
     <img th:src="${gravelerSprite.getFront_default()}" id="gravelerImage" alt="graveler">
-</div>
-<div id="nextPageButton">
-    <a th:text="${next}" style="color: #a50000" th:href="@{/quizTwo}"></a>
+    </div>
+
+    <div id="storyCard">
+    <h2>A disgruntled GM exec rolls into the street and blocks your path forward.
+        The exec demands you battle him. You’d better make this quick, the clock’s ticking!
+    </h2>
+    </div>
+
 </div>
 
 <div id="battleActionField">
-    <h2><u>Battle Action Responds</u></h2>
+    <h2><u>Battle Action Response</u></h2>
     <h3 th:text="${result}"></h3>
 </div>
 
 <div id="playerDetailsContainer">
     <div id="details">
-        <h1>Pokemon Details:</h1>
+        <h3 id="detailBanner">Pokemon Details:</h3>
         <ul id="pokemonDetails">
             <li th:text="'Name: ' + ${pikachuName}"></li>
             <li th:text="'Pokemon ID: ' + ${pikachuId}"></li>
@@ -36,19 +48,24 @@
     </div>
 
     <div id="moves">
-        <h1>moves</h1>
+        <h3 id="moveBanner">Moves</h3>
         <div id="moveContainer">
             <form action="userMoveChoice" method="get">
                 <div id="allMoves">
-                    <input class="moves" type="radio" name="moveChoice" value="x" required> F-150 Terrain Tackle </input>
-                    <input class="moves" type="radio" name="moveChoice" value="x" required> Henry Ford Hurdle </input>
-                    <input class="moves" type="radio" name="moveChoice" value="x" required> Mustang Trample </input>
-                    <input class="moves" type="radio" name="moveChoice" value="y" required> Ford Fusion Beam </input>
+                    <input class="moves" type="radio" name="moveChoice" value="x" required>F-150 Terrain Tackle </input>
+                    <br>
+                    <input class="moves" type="radio" name="moveChoice" value="x" required>Henry Ford Hurdle </input>
+                    <br>
+                    <input class="moves" type="radio" name="moveChoice" value="x" required>Mustang Trample </input>
+                    <br>
+                    <input class="moves" type="radio" name="moveChoice" value="y" required>Ford Fusion Beam </input>
+                    <br>
                     <input class="moves" type="submit" value="Attack" name="attackSubmit">
                 </div>
             </form>
         </div>
 
+        <br>
     </div>
 
     <div id="sprite">

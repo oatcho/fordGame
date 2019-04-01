@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Time {
 
-    private int time = 100;
+    private int time = 5;
 
     public Time() {
 

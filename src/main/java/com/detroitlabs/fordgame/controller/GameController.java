@@ -104,7 +104,7 @@ public class GameController {
         String quizResult = quizRepository.checkTrueFalseAnswer(userAnswer, tfAnswer);
         if (quizResult.equalsIgnoreCase("correct!")){
             String correctAnswer = "Johnny's satisfied with your competence and allows you to get on your way.";
-            timer.addTimeForCorrectQuizAnswer();
+//            timer.addTimeForCorrectQuizAnswer();
             modelMap.put("tfQuestion", correctAnswer);
         }else {
             setNewTfQuestion(modelMap);
@@ -232,13 +232,20 @@ public class GameController {
     }
     // **** **** //
 
+    @RequestMapping("/finalResult")
+    public String displayResultPage(ModelMap modelMap) {
+        modelMap.put("timeCheck", checkTime());
+        timer.setTime(5);
+        return "result";
+    }
+
     // **** Battle Logic **** //
     private String checkBattleStatus(String moveChoice){
         String move1 = "This move is not effective";
         String move3 = "Super effective, you defeated the boss";
 
         if (moveChoice.equals("y")) {
-            timer.addTimeForBeatingBoss();
+//            timer.addTimeForBeatingBoss();
             return move3;
         } else if (moveChoice.equals("x")) {
             timer.subtractTimeForBossBattle();
@@ -251,7 +258,7 @@ public class GameController {
     // **** Conditional Button Render **** //
     private String showNextButtonOnQuizPages(String result) {
         String nextButton = "";
-        String nextButtonCorrect = "←Next Level";
+        String nextButtonCorrect = "Next Level";
         if (result.equalsIgnoreCase("correct!")) {
             timer.subtractTimeForAction();
             return nextButtonCorrect;
@@ -263,7 +270,7 @@ public class GameController {
 
     private String showNextButton(String moveChoice) {
         String nextButton = "";
-        String nextButtonCorrect = "←Next Level";
+        String nextButtonCorrect = "Next Level";
         if (moveChoice.equals("x")) {
             timer.subtractTimeForAction();
             return nextButton;
@@ -275,6 +282,12 @@ public class GameController {
     }
     // **** **** //
 
+    private String checkTime(){
+        if (timer.getTime() > 0) {
+            return "onTime";
+        } else {
+            return "late";
+        }
+    }
+
 }
-
-
