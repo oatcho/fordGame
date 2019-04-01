@@ -232,6 +232,13 @@ public class GameController {
     }
     // **** **** //
 
+    @RequestMapping("/finalResult")
+    public String displayResultPage(ModelMap modelMap) {
+//        setPlayerPokemonDetails(modelMap);
+//        setBoss2PokemonDetails(modelMap);
+        return "result";
+    }
+
     // **** Battle Logic **** //
     private String checkBattleStatus(String moveChoice){
         String move1 = "This move is not effective";
