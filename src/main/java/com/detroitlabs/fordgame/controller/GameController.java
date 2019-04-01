@@ -24,7 +24,6 @@ public class GameController {
     private QuizRepository quizRepository = new QuizRepository();
     private Time timer = new Time();
     private BossRoom bossRoom = new BossRoom();
-    private
 
     @Autowired
     Pokemonservice pokemonservice;
@@ -155,6 +154,15 @@ public class GameController {
         return "boss";
     }
 
+    // **** Boss Two **** //
+    @RequestMapping("/bossTwo")
+    public String displayBossBattle2(ModelMap modelMap) {
+        setPlayerPokemonDetails(modelMap);
+        createBossRoom("GMBossRoom", 386, modelMap);
+        return "boss";
+    }
+    // **** **** //
+
     @RequestMapping("userMoveChoice")
     public ModelAndView battleLogic(@RequestParam("moveChoice") String moveChoice, ModelMap modelMap){
         ModelAndView mv = new ModelAndView("boss");
@@ -209,43 +217,7 @@ public class GameController {
     }
     // **** **** //
 
-    // **** Boss Two **** //
-    @RequestMapping("/bossTwo")
-    public String displayBossBattle2(ModelMap modelMap) {
-        setPlayerPokemonDetails(modelMap);
-        createBossRoom("FordBossRoom", 386, modelMap);
-        return "boss";
-    }
 
-//    private void setBoss2PokemonDetails(ModelMap modelMap) {
-//        Pokemon deoxys = pokemonservice.fetchSinglePokemon(386);
-//        PokemonSprite pokemonSprite = deoxys.getPokemonSprite();
-//        modelMap.put("deoxysSprite", pokemonSprite);
-//        modelMap.put("deoxysName", deoxys.getName());
-//        modelMap.put("deoxysMove", deoxys.getPokemonMoves());
-//        modelMap.put("deoxysWeight", deoxys.getWeight());
-//        modelMap.put("deoxysBaseExperience", deoxys.getBase_experience());
-//        modelMap.put("deoxysId", deoxys.getId());
-//    }
-
-
-//    @RequestMapping("userMoveChoice2")
-//    public ModelAndView battleLogic2(@RequestParam("moveChoice2") String moveChoice2, ModelMap modelMap){
-//        ModelAndView mv = new ModelAndView("boss2");
-//        String battleResult = checkBattleStatus(moveChoice2);
-//        String nextPage = showNextButton(moveChoice2);
-//        PokemonSprite bossSprite = bossRoom.getBoss().getPokemonSprite();
-//
-//        mv.addObject("result2", battleResult);
-//        mv.addObject("next", nextPage);
-//
-//        setPlayerPokemonDetails(modelMap);
-//        modelMap.put("bossRoom", bossRoom);
-//        modelMap.put("bossSprite", bossSprite);
-//
-//        return mv;
-//    }
-    // **** **** //
 
     // **** Battle Logic **** //
     private String checkBattleStatus(String moveChoice){

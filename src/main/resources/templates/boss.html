@@ -16,7 +16,7 @@
     <img th:src="${bossSprite.getFront_default()}" id="gravelerImage" alt="graveler">
 </div>
 <div id="nextPageButton">
-    <a th:text="${next}" style="color: #a50000" th:href="@{/quizTwo}"></a>
+    <a th:text="${next}" style="color: #a50000" th:href="${bossRoom.getRoomName() == 'ChryslerBossRoom'}? '/quizTwo' : '/final'"></a>
 </div>
 
 <div id="battleActionField">
