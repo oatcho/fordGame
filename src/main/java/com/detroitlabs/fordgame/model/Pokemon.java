@@ -16,6 +16,19 @@ public class Pokemon {
     private List<PokemonMoves> pokemonMoves;
     private String moveChoice;
 
+    public Pokemon() {
+    }
+
+    public Pokemon(String name, String weight, String base_experience, int id, PokemonSprite pokemonSprite, List<PokemonMoves> pokemonMoves, String moveChoice) {
+        this.name = name;
+        this.weight = weight;
+        this.base_experience = base_experience;
+        this.id = id;
+        this.pokemonSprite = pokemonSprite;
+        this.pokemonMoves = pokemonMoves;
+        this.moveChoice = moveChoice;
+    }
+
     @JsonProperty("sprites")
     public PokemonSprite getPokemonSprite() {
         return pokemonSprite;

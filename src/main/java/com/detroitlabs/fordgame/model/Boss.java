@@ -2,31 +2,16 @@ package com.detroitlabs.fordgame.model;
 
 import org.springframework.stereotype.Component;
 
-@Component
-public class Boss {
+import java.util.List;
 
-    private String bossName;
+@Component
+public class Boss extends Pokemon {
 
     public Boss() {
     }
 
-    public Boss(String bossName) {
-        this.bossName = bossName;
-
+    public Boss(String name, String weight, String base_experience, int id, PokemonSprite pokemonSprite, List<PokemonMoves> pokemonMoves, String moveChoice) {
+        super(name, weight, base_experience, id, pokemonSprite, pokemonMoves, moveChoice);
     }
 
-    @Override
-    public String toString() {
-        return "Boss{" +
-                "bossName='" + bossName + '\'' +
-                '}';
-    }
-
-    public String getBossName() {
-        return bossName;
-    }
-
-    public void setBossName(String bossName) {
-        this.bossName = bossName;
-    }
 }
