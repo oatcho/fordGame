@@ -52,6 +52,7 @@ public class GameController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
+
         ModelAndView modelAndView = new ModelAndView();
         User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
@@ -149,6 +150,7 @@ public class GameController {
     // **** Boss Room One **** //
     @RequestMapping("/bossOne")
     public String displayBossBattle1(ModelMap modelMap) {
+        //saveGame();
         setPlayerPokemonDetails(modelMap);
         createBossRoom("ChryslerBossRoom", 75, modelMap);
         return "boss";
@@ -216,8 +218,6 @@ public class GameController {
         modelMap.put("mcAnswer", questionAnswer);
     }
     // **** **** //
-
-
 
     // **** Battle Logic **** //
     private String checkBattleStatus(String moveChoice){
