@@ -104,7 +104,7 @@ public class GameController {
         String quizResult = quizRepository.checkTrueFalseAnswer(userAnswer, tfAnswer);
         if (quizResult.equalsIgnoreCase("correct!")){
             String correctAnswer = "Johnny's satisfied with your competence and allows you to get on your way.";
-            timer.addTimeForCorrectQuizAnswer();
+//            timer.addTimeForCorrectQuizAnswer();
             modelMap.put("tfQuestion", correctAnswer);
         }else {
             setNewTfQuestion(modelMap);
@@ -236,6 +236,7 @@ public class GameController {
     public String displayResultPage(ModelMap modelMap) {
 //        setPlayerPokemonDetails(modelMap);
 //        setBoss2PokemonDetails(modelMap);
+        modelMap.put("timeCheck", checkTime());
         return "result";
     }
 
@@ -245,7 +246,7 @@ public class GameController {
         String move3 = "Super effective, you defeated the boss";
 
         if (moveChoice.equals("y")) {
-            timer.addTimeForBeatingBoss();
+//            timer.addTimeForBeatingBoss();
             return move3;
         } else if (moveChoice.equals("x")) {
             timer.subtractTimeForBossBattle();
@@ -281,5 +282,13 @@ public class GameController {
         return "";
     }
     // **** **** //
+
+    private String checkTime(){
+        if (timer.getTime() > 0) {
+            return "onTime";
+        } else {
+            return "late";
+        }
+    }
 
 }

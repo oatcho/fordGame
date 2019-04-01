@@ -5,15 +5,28 @@
     <title>Result</title>
     <link rel="stylesheet" th:href="@{boss.css}" type="text/css">
 </head>
-<body>
-<div id="resultPrompt">
+<body th:switch="${timeCheck}">
+
+<!--On Time-->
+
+<div class="resultPrompt" th:case="'onTime'">
     <div>
-    <h1>This is your results</h1>
+    <h1>You're On Time!</h1>
 <!--    <div>-->
 <!--        <a th:href="${/}">Play Again</a>-->
 <!--    </div>-->
     </div>
 </div>
 
+<!--late-->
+
+<div class="resultPrompt" th:case="'late'">
+    <div>
+        <h1>You're Late!</h1>
+        <!--    <div>-->
+        <!--        <a th:href="${/}">Play Again</a>-->
+        <!--    </div>-->
+    </div>
+</div>
 </body>
 </html>

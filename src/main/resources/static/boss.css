@@ -167,11 +167,11 @@ body {
     border-color: white;
 }
 
-#resultPrompt {
+.resultPrompt {
     height: 100vh;
 }
 
-#resultPrompt div{
+.resultPrompt div{
     text-align: center;
     border-style: groove;
     border-color: #467fb4;
