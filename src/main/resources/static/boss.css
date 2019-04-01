@@ -1,8 +1,8 @@
-body{
+body {
     background-image: linear-gradient(darkblue, white);
 }
 
-#gameTitle{
+#gameTitle {
     text-align: center;
     /*font-size: x-large;*/
     border-style: double;
@@ -14,14 +14,14 @@ body{
     background-color: #0b4284;
 }
 
-#fordTitle{
+#fordTitle {
     color: white;
     font-style: oblique;
     font-family: cursive;
 
 }
 
-#playerDetailsContainer{
+#playerDetailsContainer {
     display: flex;
     justify-content: space-around;
     height: 30vh;
@@ -31,63 +31,7 @@ body{
     background: #c3c3c3;
 }
 
-#prompt{
-    border-style: solid;
-    height: 45vh;
-    width: 75%;
-    margin: auto;
-    background: #c3c3c3;
-}
-
-#details{
-    border-style: groove;
-    border-color: #467fb4;
-    background-color: #3b5b85;
-    margin: 1%;
-    width: 30%;
-    text-align: center;
-}
-
-#moves{
-    border-style: groove;
-    border-color: #467fb4;
-    background-color: #3b5b85;
-    margin: 1%;
-    width: 30%;
-    text-align: center;
-}
-
-#sprite{
-    border-style: groove;
-    border-color: #467fb4;
-    background-color: #3b5b85;
-    margin: 1%;
-    width: 30%;
-    text-align: center;
-}
-
-
-#quizQuestionsBox{
-    border-style: solid;
-    height: 39vh;
-    width: 75%;
-    margin: auto;
-    background: #c3c3c3;
-}
-
-#quizDetailsContainer{
-    display: flex;
-    justify-content: space-around;
-    height: 10vh;
-    border-style: solid;
-    margin-top: 1%;
-}
-
-#pokemonDetails{
-
-}
-
-#bossField{
+#prompt {
     text-align: center;
     border-style: groove;
     border-color: #467fb4;
@@ -95,42 +39,114 @@ body{
     width: 75%;
     margin: auto;
     background-color: #3b5b85;
-    box-shadow: black;
+}
+
+#details {
+    border-style: groove;
+    border-color: #467fb4;
+    background-color: #3b5b85;
+    margin: 1%;
+    width: 30%;
+}
+
+#moves {
+    border-style: groove;
+    border-color: #467fb4;
+    background-color: #3b5b85;
+    margin: 1%;
+    width: 30%;
+}
+
+#sprite {
+    border-style: groove;
+    border-color: #467fb4;
+    background-color: #3b5b85;
+    margin: 1%;
+    width: 30%;
+    text-align: center;
+}
+
+
+#quizQuestionsBox {
+    text-align: center;
+    border-style: groove;
+    border-color: #467fb4;
+    height: 38vh;
+    width: 75%;
+    margin: auto;
+    background-color: #3b5b85;
+}
+
+#quizDetailsContainer {
+    border-style: groove;
+    border-color: #467fb4;
+    background-color: #3b5b85;
+    margin: auto;
+    text-align: center;
+    height: 10%;
+    width: 80%;
+    margin-top: 2%;
+}
+
+
+#bossField {
+    text-align: center;
+    border-style: groove;
+    border-color: #467fb4;
+    height: 38vh;
+    width: 75%;
+    margin: auto;
+    background-color: #3b5b85;
+    display: flex;
+    justify-content: space-evenly;
 
 }
 
-#pikachuImage{
+#bossCard {
+    width: 40%;
+    border-style: double;
+}
+
+#storyCard {
+    width: 40%;
+    border: double;
+    padding-top: 2%;
+}
+
+#pikachuImage {
     width: 50%;
 }
 
-#gravelerImage{
+#gravelerImage {
     height: 70%;
     float: top;
 }
 
 #moveContainer {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: space-between;
-    height: 100%;
 
 }
 
 #allMoves {
-    width: 40%;
-    height: 40%;
-    margin: auto;
+    margin-left: 30%;
 }
 
-.moves{
-    margin: 3%;
+#moveBanner {
+    text-align: center;
 }
 
-#battleActionField{
+#detailBanner {
+    text-align: center;
+}
+
+.moves {
+    margin-bottom: 3%;
+}
+
+#battleActionField {
     border-style: groove;
     border-color: #467fb4;
     background-color: #3b5b85;
-    margin:auto;
+    margin: auto;
     text-align: center;
     height: 10%;
     width: 80%;
@@ -139,7 +155,42 @@ body{
 }
 
 #nextPageButton {
-    /*background-color: pink;*/
-    /*width: 500%;*/
+    margin-left: 79%;
+}
+
+#nextPageButton div {
+    background-color: #00ff07;
+    width: 35%;
+    padding: 2%;
+    text-align: center;
+    border-style: double;
+    border-color: white;
+}
+
+.resultPrompt {
+    height: 100vh;
+}
+
+.resultPrompt div{
+    text-align: center;
+    border-style: groove;
+    border-color: #467fb4;
+    height: 38vh;
+    width: 75%;
+    margin: auto;
+    background-color: #3b5b85;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 8%;
+}
+
+#playAgainButton {
+    margin-left: 50%;
+    background-color: #ffff00;
+    width: 5%;
+    padding: 2%;
+    text-align: center;
+    border-style: double;
+    border-color: white;
 }
 
