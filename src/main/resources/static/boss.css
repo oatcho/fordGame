@@ -184,3 +184,13 @@ body {
     margin-top: 8%;
 }
 
+#playAgainButton {
+    margin-left: 50%;
+    background-color: #ffff00;
+    width: 5%;
+    padding: 2%;
+    text-align: center;
+    border-style: double;
+    border-color: white;
+}
+
