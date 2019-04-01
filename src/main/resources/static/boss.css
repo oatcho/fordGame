@@ -45,7 +45,6 @@ body {
     background-color: #3b5b85;
     margin: 1%;
     width: 30%;
-    text-align: center;
 }
 
 #moves {
@@ -67,24 +66,26 @@ body {
 
 
 #quizQuestionsBox {
-    border-style: solid;
-    height: 39vh;
+    text-align: center;
+    border-style: groove;
+    border-color: #467fb4;
+    height: 38vh;
     width: 75%;
     margin: auto;
-    background: #c3c3c3;
+    background-color: #3b5b85;
 }
 
 #quizDetailsContainer {
-    display: flex;
-    justify-content: space-around;
-    height: 13vh;
-    border-style: solid;
-    margin-top: 1%;
+    border-style: groove;
+    border-color: #467fb4;
+    background-color: #3b5b85;
+    margin: auto;
+    text-align: center;
+    height: 10%;
+    width: 80%;
+    margin-top: 2%;
 }
 
-#pokemonDetails {
-
-}
 
 #bossField {
     text-align: center;
@@ -115,6 +116,10 @@ body {
 }
 
 #moveBanner {
+    text-align: center;
+}
+
+#detailBanner {
     text-align: center;
 }
 

@@ -251,7 +251,7 @@ public class GameController {
     // **** Conditional Button Render **** //
     private String showNextButtonOnQuizPages(String result) {
         String nextButton = "";
-        String nextButtonCorrect = "←Next Level";
+        String nextButtonCorrect = "Next Level";
         if (result.equalsIgnoreCase("correct!")) {
             timer.subtractTimeForAction();
             return nextButtonCorrect;
@@ -263,7 +263,7 @@ public class GameController {
 
     private String showNextButton(String moveChoice) {
         String nextButton = "";
-        String nextButtonCorrect = "←Next Level";
+        String nextButtonCorrect = "Next Level";
         if (moveChoice.equals("x")) {
             timer.subtractTimeForAction();
             return nextButton;
