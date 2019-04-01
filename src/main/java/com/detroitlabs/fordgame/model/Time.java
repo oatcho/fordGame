@@ -15,6 +15,8 @@ public class Time {
         return time -= 1;
     }
 
+    public int addTimeForBeatingBoss() { return time += 1; }
+
     public int subtractTimeForBossBattle() { return time -= 1; }
 
     public int subtractTimeForAction() {

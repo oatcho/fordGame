@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz1</title>
+    <link rel="stylesheet" th:href="@{main.css}" type="text/css">
+</head>
+<body>
+<div id="gameTitle">
+    <h1>Pop Quiz!</h1>
+</div>
+<div id="quizQuestionsBox">
+    <h3>As you step out of your door to get into your car, you’re stopped by Little Johnny from next door. He knows you’re working at Ford now and he wants to see how committed you are to the company. Being the kind-hearted human you are, you decide to entertain him. The sooner you answer his question correctly, the sooner you can say goodbye and get to work!</h3>
+    <p th:text="${tfQuestion}"></p>
+</div>
+<div id="quizDetailsContainer">
+    <div id="quizResponse"><p th:text="${result}"></p></div>
+    <div id="quizForm">
+        <form action="userAnswer" method="get">
+            <input type="radio" name="answer" value="t" required>True</input>
+            <input type="radio" name="answer" value="f" required>False</input>
+            <input type="hidden" name="banana" th:value="${tfAnswer}" />
+            <input type="submit" value="Submit" name="answerSubmit">
+        </form>
+    </div>
+</div>
+<div id="nextPageButton">
+    <a th:text="${next}" style="color: #a50000" th:href="@{/bossOne}"></a>
+</div>
+<div id="playerDetailsContainer">
+    <div id="details">
+        <h1>Pokemon Details:</h1>
+        <ul id="pokemonDetails">
+            <li th:text="'Name: ' + ${pikachuName}"></li>
+            <li th:text="'Pokemon ID: ' + ${pikachuId}"></li>
+            <li th:text="'Weight: ' + ${pikachuWeight}"></li>
+            <li th:text="'Exp. Points: ' + ${pikachuBaseExperience}"></li>
+        </ul>
+    </div>
+    <div id="moves">
+        <h1>Moves:</h1>
+        <ul>
+            <li>1) F-150 Terrain Tackle</li>
+            <li>2) Henry Ford Hurdle</li>
+            <li>3) Ford Fusion Beam</li>
+            <li>4) Mustang Trample</li>
+        </ul>
+    </div>
+    <div id="sprite">
+        <img th:src="${pikachuSprite.getFront_default()}" alt="pikachu">
+    </div>
+</div>
+</body>
+</html>
