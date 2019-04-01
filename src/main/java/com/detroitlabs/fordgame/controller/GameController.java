@@ -137,7 +137,8 @@ public class GameController {
     }
 
     private void setBossPokemonDetails(ModelMap modelMap) {
-        Pokemon graveler = pokemonservice.fetchSinglePokemon(75);
+
+        Boss graveler = pokemonservice.fetchPokemonBoss(75);
         PokemonSprite pokemonSprite = graveler.getPokemonSprite();
         modelMap.put("gravelerSprite", pokemonSprite);
         modelMap.put("gravelerName", graveler.getName());
@@ -145,6 +146,21 @@ public class GameController {
         modelMap.put("gravelerWeight", graveler.getWeight());
         modelMap.put("gravelerBaseExperience", graveler.getBase_experience());
         modelMap.put("gravelerId", graveler.getId());
+    }
+
+    private Boss createPokemonBoss(int pokemonID) {
+        Boss newBoss = pokemonservice.fetchPokemonBoss(pokemonID);
+        return newBoss;
+    }
+
+    private void createBossRoom(String name, int pokemonID, ModelMap modelMap) {
+        BossRoom bossRoom = new BossRoom();
+        bossRoom.setRoomName(name);
+        bossRoom.setBoss(createPokemonBoss(pokemonID));
+        PokemonSprite bossSprite = bossRoom.getBoss().getPokemonSprite();
+
+        modelMap.put("bossRoom", bossRoom);
+        modelMap.put("bossSprite", bossSprite);
     }
 
     @RequestMapping("userMoveChoice")
