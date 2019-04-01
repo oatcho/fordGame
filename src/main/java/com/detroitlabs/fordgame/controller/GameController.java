@@ -234,9 +234,8 @@ public class GameController {
 
     @RequestMapping("/finalResult")
     public String displayResultPage(ModelMap modelMap) {
-//        setPlayerPokemonDetails(modelMap);
-//        setBoss2PokemonDetails(modelMap);
         modelMap.put("timeCheck", checkTime());
+        timer.setTime(5);
         return "result";
     }
 
