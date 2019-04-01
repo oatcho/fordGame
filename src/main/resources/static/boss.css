@@ -32,11 +32,13 @@ body {
 }
 
 #prompt {
-    border-style: solid;
-    height: 45vh;
+    text-align: center;
+    border-style: groove;
+    border-color: #467fb4;
+    height: 38vh;
     width: 75%;
     margin: auto;
-    background: #c3c3c3;
+    background-color: #3b5b85;
 }
 
 #details {
