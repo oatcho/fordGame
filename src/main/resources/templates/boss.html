@@ -11,9 +11,9 @@
 </div>
 
 <div id="bossField">
-    <h3>GM Manager</h3>
-    <p th:text="${gravelerName}"></p>
-    <img th:src="${gravelerSprite.getFront_default()}" id="gravelerImage" alt="graveler">
+    <h3>Chrysler Manager</h3>
+    <p th:text="${bossRoom.getRoomName()}"></p>
+    <img th:src="${bossSprite.getFront_default()}" id="gravelerImage" alt="graveler">
 </div>
 <div id="nextPageButton">
     <a th:text="${next}" style="color: #a50000" th:href="@{/quizTwo}"></a>

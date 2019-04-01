@@ -23,6 +23,7 @@ public class GameController {
 
     private QuizRepository quizRepository = new QuizRepository();
     private Time timer = new Time();
+    private BossRoom bossRoom = new BossRoom();
 
     @Autowired
     Pokemonservice pokemonservice;
@@ -132,21 +133,22 @@ public class GameController {
     @RequestMapping("/bossOne")
     public String displayBossBattle1(ModelMap modelMap) {
         setPlayerPokemonDetails(modelMap);
-        setBossPokemonDetails(modelMap);
+//        setBossPokemonDetails(modelMap);
+        createBossRoom("ChryslerBossRoom", 75, modelMap);
         return "boss";
     }
 
-    private void setBossPokemonDetails(ModelMap modelMap) {
-
-        Boss graveler = pokemonservice.fetchPokemonBoss(75);
-        PokemonSprite pokemonSprite = graveler.getPokemonSprite();
-        modelMap.put("gravelerSprite", pokemonSprite);
-        modelMap.put("gravelerName", graveler.getName());
-        modelMap.put("gravelerMove", graveler.getPokemonMoves());
-        modelMap.put("gravelerWeight", graveler.getWeight());
-        modelMap.put("gravelerBaseExperience", graveler.getBase_experience());
-        modelMap.put("gravelerId", graveler.getId());
-    }
+//    private void setBossPokemonDetails(ModelMap modelMap) {
+//
+//        Boss graveler = pokemonservice.fetchPokemonBoss(75);
+//        PokemonSprite pokemonSprite = graveler.getPokemonSprite();
+//        modelMap.put("gravelerSprite", pokemonSprite);
+//        modelMap.put("gravelerName", graveler.getName());
+//        modelMap.put("gravelerMove", graveler.getPokemonMoves());
+//        modelMap.put("gravelerWeight", graveler.getWeight());
+//        modelMap.put("gravelerBaseExperience", graveler.getBase_experience());
+//        modelMap.put("gravelerId", graveler.getId());
+//    }
 
     private Boss createPokemonBoss(int pokemonID) {
         Boss newBoss = pokemonservice.fetchPokemonBoss(pokemonID);
@@ -154,13 +156,13 @@ public class GameController {
     }
 
     private void createBossRoom(String name, int pokemonID, ModelMap modelMap) {
-        BossRoom bossRoom = new BossRoom();
         bossRoom.setRoomName(name);
         bossRoom.setBoss(createPokemonBoss(pokemonID));
         PokemonSprite bossSprite = bossRoom.getBoss().getPokemonSprite();
 
         modelMap.put("bossRoom", bossRoom);
         modelMap.put("bossSprite", bossSprite);
+
     }
 
     @RequestMapping("userMoveChoice")
@@ -168,11 +170,15 @@ public class GameController {
         ModelAndView mv = new ModelAndView("boss");
         String battleResult = checkBattleStatus(moveChoice);
         String nextPage = showNextButton(moveChoice);
+        PokemonSprite bossSprite = bossRoom.getBoss().getPokemonSprite();
+
         mv.addObject("result", battleResult);
         mv.addObject("next", nextPage);
 
         setPlayerPokemonDetails(modelMap);
-        setBossPokemonDetails(modelMap);
+        //setBossPokemonDetails(modelMap);
+        modelMap.put("bossRoom", bossRoom);
+        modelMap.put("bossSprite", bossSprite);
 
         return mv;
     }
