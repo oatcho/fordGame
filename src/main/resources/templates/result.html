@@ -12,9 +12,6 @@
 <div class="resultPrompt" th:case="'onTime'">
     <div>
     <h1>You're On Time!</h1>
-    <div>
-        <a th:href="@{/}">Play Again</a>
-    </div>
     </div>
 </div>
 
@@ -23,10 +20,12 @@
 <div class="resultPrompt" th:case="'late'">
     <div>
         <h1>You're Late!</h1>
-        <!--    <div>-->
-        <!--        <a th:href="${/}">Play Again</a>-->
-        <!--    </div>-->
     </div>
+</div>
+
+
+<div>
+    <a th:href="@{/}">Play Again</a>
 </div>
 </body>
 </html>
