@@ -17,19 +17,27 @@
 </div>
 
 <div id="bossField">
+    <div id="bossCard">
     <h3>GM Manager</h3>
     <p th:text="${gravelerName}"></p>
     <img th:src="${gravelerSprite.getFront_default()}" id="gravelerImage" alt="graveler">
+    </div>
+    <div id="storyCard">
+    <h2>A disgruntled GM exec rolls into the street and blocks your path forward.
+        The exec demands you battle him. You’d better make this quick, the clock’s ticking!
+    </h2>
+    </div>
+
 </div>
 
 <div id="battleActionField">
-    <h2><u>Battle Action Responds</u></h2>
+    <h2><u>Battle Action Response</u></h2>
     <h3 th:text="${result}"></h3>
 </div>
 
 <div id="playerDetailsContainer">
     <div id="details">
-        <h1>Pokemon Details:</h1>
+        <h3 id="detailBanner">Pokemon Details:</h3>
         <ul id="pokemonDetails">
             <li th:text="'Name: ' + ${pikachuName}"></li>
             <li th:text="'Pokemon ID: ' + ${pikachuId}"></li>
@@ -56,6 +64,7 @@
             </form>
         </div>
 
+        <br>
     </div>
 
     <div id="sprite">

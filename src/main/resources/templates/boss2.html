@@ -23,13 +23,13 @@
 </div>
 
 <div id="battleActionField">
-    <h2><u>Battle Action Responds</u></h2>
+    <h2><u>Battle Action Response</u></h2>
     <h3 th:text="${result2}"></h3>
 </div>
 
 <div id="playerDetailsContainer">
     <div id="details">
-        <h1>Pokemon Details:</h1>
+        <h3 id="detailBanner">Pokemon Details:</h3>
         <ul id="pokemonDetails">
             <li th:text="'Name: ' + ${pikachuName}"></li>
             <li th:text="'Pokemon ID: ' + ${pikachuId}"></li>
@@ -57,6 +57,7 @@
             </form>
         </div>
 
+        <br>
     </div>
 
     <div id="sprite">

@@ -97,7 +97,20 @@ body {
     width: 75%;
     margin: auto;
     background-color: #3b5b85;
+    display: flex;
+    justify-content: space-evenly;
 
+}
+
+#bossCard {
+    width: 40%;
+    border-style: double;
+}
+
+#storyCard {
+    width: 40%;
+    border: double;
+    padding-top: 2%;
 }
 
 #pikachuImage {
