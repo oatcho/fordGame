@@ -134,3 +134,5 @@ gradle-app.setting
 .idea_modules/
 .gradle/*
 out/
+/gcloud
+gcloud
