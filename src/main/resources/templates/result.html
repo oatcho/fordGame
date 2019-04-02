@@ -17,7 +17,7 @@
 
     <div class="resultPrompt" th:case="'onTime'">
         <div class="flexContainer">
-            <h1>You're On Time!</h1>
+            <h1>Pikachu On Time!</h1>
             <h2>You rush into the building and make it to stand up just in time. Your manager gives you a smile and you
                 realize that today’s the start of a great career with Ford Motor Company!</h2>
         </div>
@@ -27,7 +27,7 @@
 
     <div class="resultPrompt" th:case="'late'">
         <div class="flexContainer">
-            <h1>You're Late!</h1>
+            <h1><span th:text="${pikachuName}"></span> Late!</h1>
             <h2>You rush into the building, but stand up’s already done and they’ve moved on without you. You get an
                 email that tells you not to bother coming in tomorrow. And so you quickly hustle back to see if you can
                 find that Chrysler exec you ran into earlier…</h2>
