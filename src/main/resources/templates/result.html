@@ -5,27 +5,32 @@
     <title>Result</title>
     <link rel="stylesheet" th:href="@{boss.css}" type="text/css">
 </head>
-<body th:switch="${timeCheck}">
-
-<!--On Time-->
-
-<div class="resultPrompt" th:case="'onTime'">
-    <div>
-    <h1>You're On Time!</h1>
-    </div>
-</div>
-
-<!--late-->
-
-<div class="resultPrompt" th:case="'late'">
-    <div>
-        <h1>You're Late!</h1>
-    </div>
-</div>
-
+<body>
 
 <div id="playAgainButton">
-    <a th:href="@{/}">Play Again</a>
+    <a th:href="@{/}" style="color: #aca6a5">Play Again</a>
 </div>
+
+
+<div th:switch="${timeCheck}">
+    <!--On Time-->
+
+    <div class="resultPrompt" th:case="'onTime'">
+        <div>
+            <h1>You're On Time!</h1>
+        </div>
+    </div>
+
+    <!--late-->
+
+    <div class="resultPrompt" th:case="'late'">
+        <div>
+            <h1>You're Late!</h1>
+        </div>
+    </div>
+
+</div>
+
+
 </body>
 </html>
