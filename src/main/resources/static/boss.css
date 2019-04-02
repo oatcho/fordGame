@@ -184,6 +184,12 @@ body {
     margin-top: 8%;
 }
 
+.flexContainer{
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+}
+
 #buttonContainer {
     display: flex;
     justify-content: space-evenly;
