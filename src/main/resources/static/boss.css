@@ -184,13 +184,30 @@ body {
     margin-top: 8%;
 }
 
+#buttonContainer {
+    display: flex;
+    justify-content: space-evenly;
+}
+
 #playAgainButton {
-    margin-left: 50%;
+    margin-left: 45%;
     background-color: #ffff00;
-    width: 5%;
-    padding: 2%;
+    width: 10%;
+    padding-top: 1%;
+    padding-bottom: 1%;
     text-align: center;
     border-style: double;
     border-color: white;
+}
+
+#logOutButton {
+    background-color: #ffff00;
+    width: 10%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    text-align: center;
+    border-style: double;
+    border-color: white;
+
 }
 
